@@ -1,0 +1,117 @@
+/* Google Font: Cinzel Decorative, Press Start 2P, Uncial Antiqua, Pirata One */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Pirata+One&family=Press+Start+2P&family=Uncial+Antiqua&display=swap');
+
+/* -----------------------------------> Root Colour Palette + Typography */
+
+:root {
+  --bg-main: #0b0c10; /* Main Background */
+  --bg-panel: #1c1e22; /* Background panel */
+  --text-primary: #ffffff; /* Main Text */
+  --text-secondary: #58595c; /* Secondary Text */
+  --accent-primary: #ffb600; /* Primary Accent */
+  --accent-secondary: #00c89a; /* Secondary Accent */
+
+  /* Font families */
+  --font-nav-bar: 'Pirata One', cursive; /* Navbar font */
+  --font-lore: 'Uncial Antiqua', cursive; /* Mase text */
+  --font-title: 'Cinzel Decorative', serif; /* Main titles */
+  --font-arcade: 'Press Start 2P', monospace; /* Phaser */
+}
+
+/* -----------------------------------> Global styles */
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-main); /* page background */
+  color: var(--text-primary); /* main text color */
+  font-family: var(--font-lore);
+  margin: 0.5rem;
+  padding-top: 88px;
+}
+
+/* -----------------------------------> Navbar */
+#navbar {
+  background: var(--bg-panel);
+  margin: 0.5rem;
+  font-size: 1.5rem;
+  border-radius: 8px;
+}
+
+#navbar .navbar-logo {
+  font-family: var(--font-nav-bar);
+  color: var(--text-primary) !important;
+  font-size: 2.1rem;
+  letter-spacing: 2.5px;
+  transition: color 0.4s, transform 0.4s, text-shadow 0.4s;
+  text-shadow: 1px 1px var(--accent-primary);
+  text-decoration: none;
+}
+#navbar .navbar-logo:hover {
+  color: var(--accent-primary) !important;
+  transform: scale(1.05);
+  text-shadow: 2px 2px var(--text-primary);
+  text-decoration: none;
+}
+
+#navbar .nav-link {
+  font-family: var(--font-nav-bar);
+  color: var(--text-primary) !important;
+  padding: 0.5rem 1rem;
+  transition: color 0.3s, transform 0.3s;
+}
+
+#navbar .nav-link::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  width: 0;
+  height: 2px;
+  background: var(--accent-primary);
+  transition: width 0.3s, left 0.3s;
+}
+
+#navbar .nav-link:hover,
+#navbar .nav-link.active {
+  color: var(--accent-primary) !important; /* link hover/active */
+  transform: translateY(-2px);
+}
+#navbar .nav-link:hover::after,
+#navbar .nav-link.active::after {
+  width: 80%;
+  left: 10%;
+}
+
+/* -----------------------------------> Header */
+
+#header {
+  padding: 1.5rem 0;
+  border-radius: 8px;
+}
+
+.header-box {
+  display: inline-block;
+  background: var(--bg-panel);
+  padding: 1rem 2rem;
+  border-radius: 8px;
+}
+
+#header h1 {
+  font-family: var(--font-title);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+#header p {
+  font-family: var(font-lore);
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+.header-monster {
+  width: 55px;
+  margin-right: 0.2rem;
+  margin-bottom: 10px;
+}
