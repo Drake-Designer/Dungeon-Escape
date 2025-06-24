@@ -1,7 +1,6 @@
-/* Google Font: Cinzel Decorative, Press Start 2P, Uncial Antiqua, Pirata One */
+/* Google Font: Roboto, Cinzel Decorative, Press Start 2P, Uncial Antiqua, Pirata One */
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Pirata+One&family=Press+Start+2P&family=Uncial+Antiqua&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Pirata+One&family=Press+Start+2P&family=Roboto:ital,wght@0,100..900;1,100..900&family=Uncial+Antiqua&display=swap');
 /* -----------------------------------> Root Colour Palette + Typography */
 
 :root {
@@ -15,6 +14,7 @@
   /* Font families */
   --font-nav-bar: 'Pirata One', cursive; /* Navbar font */
   --font-lore: 'Uncial Antiqua', cursive; /* Mase text */
+  --font-secondary: 'Roboto', serif; /* Secondary and Modal text */
   --font-title: 'Cinzel Decorative', serif; /* Main titles */
   --font-arcade: 'Press Start 2P', monospace; /* Phaser */
 }
@@ -29,26 +29,26 @@ body {
   color: var(--text-primary); /* main text color */
   font-family: var(--font-lore);
   margin: 0.5rem;
-  padding-top: 88px;
+  padding-top: 60px;
 }
 
 /* -----------------------------------> Navbar */
 #navbar {
   background: var(--bg-panel);
-  margin: 0.5rem;
+  border-bottom: 2px solid var(--accent-primary);
   font-size: 1.5rem;
-  border-radius: 8px;
 }
 
-#navbar .navbar-logo {
+#navbar .navbar-home {
   font-family: var(--font-nav-bar);
   color: var(--text-primary) !important;
-  font-size: 2.1rem;
+  font-size: 2rem;
   letter-spacing: 2.5px;
   transition: color 0.4s, transform 0.4s, text-shadow 0.4s;
   text-shadow: 1px 1px var(--accent-primary);
   text-decoration: none;
 }
+
 #navbar .navbar-logo:hover {
   color: var(--accent-primary) !important;
   transform: scale(1.05);
@@ -76,7 +76,7 @@ body {
 
 #navbar .nav-link:hover,
 #navbar .nav-link.active {
-  color: var(--accent-primary) !important; /* link hover/active */
+  color: var(--accent-primary) !important;
   transform: translateY(-2px);
 }
 #navbar .nav-link:hover::after,
@@ -101,17 +101,118 @@ body {
 
 #header h1 {
   font-family: var(--font-title);
-  font-weight: 700;
   color: var(--text-primary);
+  -webkit-text-stroke: 1px var(--accent-primary);
+  text-shadow: 2px 2px var(--bg-panel);
 }
+
 #header p {
-  font-family: var(font-lore);
-  font-size: 1rem;
+  font-family: var(--font-secondary);
   color: var(--text-primary);
 }
 
-.header-monster {
-  width: 55px;
-  margin-right: 0.2rem;
-  margin-bottom: 10px;
+.monster-gif {
+  width: 40px;
+}
+
+/* -----------------------------------> How to play Modal */
+
+#howToPlayModal .modal-header {
+  display: inline-block;
+  color: var(--accent-primary) !important;
+  background-color: var(--bg-panel);
+  border-bottom: 2px solid var(--accent-primary);
+}
+
+#howToPlayModal .modal-header h2 {
+  text-align: center;
+  font-family: var(--font-arcade);
+}
+
+#howToPlayModal .modal-footer {
+  border-top: 2px solid var(--accent-primary);
+  background-color: var(--bg-panel);
+}
+
+#howToPlayModal .modal-body .how-to-play-list li {
+  display: flex;
+  justify-content: center;
+  font-family: var(--font-secondary);
+  color: var(--text-secondary);
+  letter-spacing: 0.5px;
+  margin-bottom: 1.5rem;
+}
+
+#howToPlayModal .modal-body .how-to-play-list li i {
+  font-size: 1.5rem;
+  color: var(--accent-primary);
+  margin-right: 0.75rem;
+  min-width: 1.5rem;
+  text-align: center;
+}
+
+#howToPlayModal .modal-footer .btn-secondary {
+  background-color: var(--bg-main);
+}
+
+#howToPlayModal .modal-header .btn-close {
+  display: none !important;
+}
+
+/* -----------------------------------> Footer */
+
+#footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-top: 2px solid var(--accent-primary);
+  background: var(--bg-panel);
+  font-family: var(--font-secondary);
+  color: var(--text-primary);
+}
+
+#footer .footer-left,
+#footer .footer-center,
+#footer .footer-right {
+  padding: 0.5rem 0;
+}
+
+#footer .footer-logo {
+  font-family: var(--font-title);
+  color: var(--accent-primary);
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+#footer a {
+  font-family: var(--font-secondary);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+#footer a:hover {
+  color: var(--accent-secondary);
+}
+
+#footer .small a {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+#footer .footer-right i {
+  vertical-align: middle;
+  transition: color 0.3s;
+}
+#footer .footer-right i:hover {
+  color: var(--accent-primary);
+}
+
+/* -----------------------------------> Media queries */
+
+/*(Burger Menu */
+@media (max-width: 992px) {
+  .navbar-collapse .nav-link::after {
+    display: none !important;
+  }
 }

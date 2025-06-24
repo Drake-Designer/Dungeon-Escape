@@ -13,9 +13,9 @@
 
     <!-- Bootstrap Link -->
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
       crossorigin="anonymous"
     />
 
@@ -24,9 +24,10 @@
   </head>
   <body>
     <!-- Navbar -->
-    <nav id="navbar" class="navbar navbar-expand-lg fixed-top">
+    <nav id="navbar" class="navbar navbar-expand-lg fixed-top navbar-dark">
       <div class="container">
-        <a class="navbar-logo" href="#index.html">Dungeon Escape!</a>
+        <!-- Home -->
+        <a class="navbar-home" href="index.html">Home</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -40,27 +41,143 @@
         </button>
         <div class="collapse navbar-collapse" id="mainNav">
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="#how-to-play">How to Play</a></li>
-            <li class="nav-item"><a class="nav-link" href="#leaderboard">Phaser v3.90</a></li>
-            <li class="nav-item"><a class="nav-link" href="#credits">Credits</a></li>
+            <li class="nav-item">
+              <!-- How to Play -->
+              <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#howToPlayModal">How to Play</a>
+            </li>
+            <li class="nav-item">
+              <!-- Phaser Link -->
+              <a class="nav-link" href="https://phaser.io" target="_blank" rel="noopener">Phaser v3.90</a>
+            </li>
+            <li class="nav-item">
+              <!-- Credits -->
+              <a class="nav-link" href="#credits">Credits</a>
+            </li>
           </ul>
         </div>
       </div>
     </nav>
 
     <!-- Header -->
-    <header id="header" class="text-center py-3 mb-3">
+    <header id="header" class="text-center">
       <div class="header-box">
-        <h1 class="display-5 mb-1">
-          <img src="assets/images/monster-gif.gif" alt="Monster Gif" class="header-monster" />
+        <h1>
+          <img class="monster-gif" src="assets/images/monster-gif.gif" alt="Monster Gif" />
           Dungeon Escape!
+          <img class="monster-gif" src="assets/images/monster-gif-flipped.gif" alt="Monster Gif" />
         </h1>
-        <p class="lead mb-0">Explore the dungeon, find the key, run away from the monsters, and escape!</p>
+        <p>Explore the dungeon, find the key, run away from the monsters, and escape!</p>
       </div>
     </header>
 
-    <!-- JS Link-->
+    <!-- How to Play Modal -->
+    <div id="howToPlayModal" class="modal fade" tabindex="-1" aria-labelledby="howToPlayLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title">How to Play</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <ul class="how-to-play-list list-unstyled ps-3">
+              <li>
+                <i class="fa-solid fa-arrows-up-down-left-right"></i>
+                Use arrow keys to move your hero.
+              </li>
+              <li>
+                <i class="fa-solid fa-key me-2"></i>
+                Find one of the two keys hidden in three chests.
+              </li>
+              <li>
+                <i class="fa-solid fa-skull"></i>
+                Avoid the monsters roaming the dungeon.
+              </li>
+              <li>
+                <i class="fa-solid fa-door-closed me-2"></i>
+                Open a locked door with your key to escape.
+              </li>
+              <li>
+                <i class="fa-solid fa-skull-crossbones me-2"></i>
+                If a monster catches you, you lose!
+              </li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer" class="site-footer">
+      <div class="container py-3">
+        <div class="row align-items-center">
+          <!-- Credits -->
+          <div class="col-12 col-md-4 text-center text-md-start credits-section">
+            <ul class="list-unstyled mb-0">
+              <li>
+                Game built with
+                <a href="https://phaser.io/phaser3" target="_blank" rel="noopener noreferrer">Phaser 3.90</a>
+              </li>
+              <li>
+                Map personally designed with
+                <a href="https://www.mapeditor.org/" target="_blank" rel="noopener noreferrer">Tiled</a>
+              </li>
+              <li>Sprites &amp; tiles from various free assets websites</li>
+              <li>
+                Fonts by
+                <a href="https://fonts.google.com/" target="_blank" rel="noopener noreferrer">Google Fonts</a>
+              </li>
+              <li>
+                UI styled with
+                <a href="https://getbootstrap.com/" target="_blank" rel="noopener noreferrer">Bootstrap 5</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Game Version -->
+          <div class="col-12 col-md-4 text-center info-section">
+            <p class="mb-1">
+              <strong>Version:</strong>
+              1.0
+            </p>
+            <p class="mb-0">&copy; 2025 Dungeon Escape</p>
+          </div>
+
+          <!-- Social links -->
+          <div class="col-12 col-md-4 text-center text-md-end social-section">
+            <a
+              href="https://github.com/Drake-Designer/Dungeon-Escape"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub repository"
+            >
+              <i class="fa-brands fa-github fa-lg"></i>
+            </a>
+            <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" class="ms-3" aria-label="Twitter profile">
+              <i class="fa-brands fa-twitter fa-lg"></i>
+            </a>
+            <a href="https://discord.com/" target="_blank" rel="noopener noreferrer" class="ms-3" aria-label="Discord server">
+              <i class="fa-brands fa-discord fa-lg"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Font Awesome Link -->
+    <script src="https://kit.fontawesome.com/1632434743.js" crossorigin="anonymous"></script>
+
+    <!-- Bootstap Link -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- JS Link -->
     <script src="js/game.js"></script>
+    <script src="js/script.js"></script>
   </body>
 </html>
