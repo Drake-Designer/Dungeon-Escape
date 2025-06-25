@@ -16,7 +16,7 @@
 
 ## 👉 [Play Dungeon Escape](https://drake-designer.github.io/Dungeon-Escape/)
 
-![Game Intro Screenshot](assets/readme-images/game-intro.png)
+![Game Intro Screenshot](assets/readme-images/am-i-responsive.png)
 
 <br><br>
 

@@ -1,7 +1,12 @@
 // -------------------------------------> Global Variables
 
 let hero;
-let monsters;
+let monsters = [];
+let positions = [
+  { x: 680, y: 110 },
+  { x: 743, y: 550 },
+  { x: 115, y: 430 },
+];
 
 // -------------------------------------> Global Functions
 
@@ -74,13 +79,15 @@ class mainScene extends Phaser.Scene {
     // Tiled Map
     this.load.tilemapTiledJSON('dungeon-map', 'assets/phaser/tilesets/dungeon-map.tmj'); // Personalized map made by ME with Tiled! :D
 
-    // Sprites
+    // Sprites map
     this.load.spritesheet('floor', 'assets/phaser/tilesets/floor.png', { frameWidth: 16, frameHeight: 16 });
     this.load.spritesheet('walls', 'assets/phaser/tilesets/walls.png', { frameWidth: 16, frameHeight: 16 });
     this.load.spritesheet('walls-doors', 'assets/phaser/tilesets/walls-doors.png', { frameWidth: 16, frameHeight: 16 });
     this.load.spritesheet('mixed', 'assets/phaser/tilesets/mixed.png', { frameWidth: 16, frameHeight: 16 });
-    this.load.spritesheet('hero', 'assets/sprites/hero.png', { frameWidth: 32, frameHeight: 32 });
-    this.load.spritesheet('monster', 'assets/sprites/monster.png', { frameWidth: 32, frameHeight: 32 });
+
+    // Sprites Hero and Monster
+    this.load.spritesheet('hero', 'assets/phaser/sprites/hero.png', { frameWidth: 32, frameHeight: 32 });
+    this.load.spritesheet('monster', 'assets/phaser/sprites/monster.png', { frameWidth: 32, frameHeight: 32 });
   }
   create() {
     // Map and layers
@@ -94,7 +101,39 @@ class mainScene extends Phaser.Scene {
     const wallsLayer = map.createLayer('walls', [lMixed, lWalls, lWallsDoors]);
     const doorClose = map.createLayer('door-close', [lWallsDoors]);
     const doorOpen = map.createLayer('door-open', [lWallsDoors]);
-    doorOpen.setDepth(10);
+
+    // Objects: chests
+    const chests = map.getObjectLayer('chests');
+
+    // Hero
+    hero = this.physics.add.sprite(60, 60, 'hero');
+    hero.body.setSize(18, 18);
+
+    this.anims.create({
+      key: 'hero-walk',
+      frames: this.anims.generateFrameNumbers('hero', { start: 0, end: 7 }),
+      frameRate: 9,
+      repeat: -1,
+    });
+
+    // Monsters
+    monsters = this.add.group();
+
+    this.anims.create({
+      key: 'monster-walk',
+      frames: this.anims.generateFrameNumbers('monster', { start: 0, end: 3 }),
+      frameRate: 9,
+      repeat: -1,
+    });
+
+    positions.forEach((pos) => {
+      const monster = this.physics.add.sprite(pos.x, pos.y, 'monster');
+      monster.body.setSize(18, 18);
+      monster.anims.play('monster-walk');
+      this.physics.add.collider(monster, wallsLayer);
+      this.physics.add.collider(monster, doorClose);
+      monsters.add(monster);
+    });
   }
 
   update() {}
