@@ -51,7 +51,7 @@
             </li>
             <li class="nav-item">
               <!-- Credits -->
-              <a class="nav-link" href="#credits">Credits</a>
+              <a class="nav-link" href="#footer">Credits</a>
             </li>
           </ul>
         </div>
@@ -69,6 +69,13 @@
         <p>Explore the dungeon, find the key, run away from the monsters, and escape!</p>
       </div>
     </header>
+
+    <!-- Game Container -->
+    <main class="main-container">
+      <div id="game-border">
+        <div id="game-container"></div>
+      </div>
+    </main>
 
     <!-- How to Play Modal -->
     <div id="howToPlayModal" class="modal fade" tabindex="-1" aria-labelledby="howToPlayLabel" aria-hidden="true">
@@ -110,7 +117,7 @@
     </div>
 
     <!-- Footer -->
-    <footer id="footer" class="site-footer">
+    <footer id="footer">
       <div class="container py-3">
         <div class="row align-items-center">
           <!-- Credits -->
@@ -118,49 +125,71 @@
             <ul class="list-unstyled mb-0">
               <li>
                 Game built with
-                <a href="https://phaser.io/phaser3" target="_blank" rel="noopener noreferrer">Phaser 3.90</a>
+                <a href="https://phaser.io" class="footer-link" target="_blank" rel="noopener noreferrer">Phaser 3.90</a>
               </li>
               <li>
                 Map personally designed with
-                <a href="https://www.mapeditor.org/" target="_blank" rel="noopener noreferrer">Tiled</a>
+                <a href="https://www.mapeditor.org/" class="footer-link" target="_blank" rel="noopener noreferrer">Tiled</a>
               </li>
               <li>Sprites &amp; tiles from various free assets websites</li>
               <li>
                 Fonts by
-                <a href="https://fonts.google.com/" target="_blank" rel="noopener noreferrer">Google Fonts</a>
+                <a href="https://fonts.google.com/" class="footer-link" target="_blank" rel="noopener noreferrer">Google Fonts</a>
               </li>
               <li>
                 UI styled with
-                <a href="https://getbootstrap.com/" target="_blank" rel="noopener noreferrer">Bootstrap 5</a>
+                <a href="https://getbootstrap.com/" class="footer-link" target="_blank" rel="noopener noreferrer">Bootstrap 5</a>
               </li>
             </ul>
           </div>
 
           <!-- Game Version -->
-          <div class="col-12 col-md-4 text-center info-section">
+          <div id="footer-version" class="col-12 col-md-4 text-center info-section">
             <p class="mb-1">
               <strong>Version:</strong>
               1.0
             </p>
-            <p class="mb-0">&copy; 2025 Dungeon Escape</p>
           </div>
 
-          <!-- Social links -->
-          <div class="col-12 col-md-4 text-center text-md-end social-section">
+          <!-- Social Link -->
+          <div id="footer-social" class="col-12 col-md-4 text-center text-md-end social-section">
             <a
-              href="https://github.com/Drake-Designer/Dungeon-Escape"
+              href="https://github.com/Drake-Designer"
+              class="footer-social"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="GitHub repository"
+              aria-label="My GitHub"
             >
-              <i class="fa-brands fa-github fa-lg"></i>
+              <i class="fa-brands fa-github fa-xl"></i>
             </a>
-            <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" class="ms-3" aria-label="Twitter profile">
+            <a
+              href="https://twitter.com/"
+              class="footer-social ms-3"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Twitter profile"
+            >
               <i class="fa-brands fa-twitter fa-lg"></i>
             </a>
-            <a href="https://discord.com/" target="_blank" rel="noopener noreferrer" class="ms-3" aria-label="Discord server">
+            <a
+              href="https://discord.com/"
+              class="footer-social ms-3"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Discord server"
+            >
               <i class="fa-brands fa-discord fa-lg"></i>
             </a>
+          </div>
+        </div>
+
+        <!-- Line Divider -->
+        <hr class="footer-divider" />
+
+        <!-- Copyright -->
+        <div id="copyright" class="row">
+          <div class="col-12 text-center">
+            <p class="mb-0">&copy; 2025 Dungeon Escape. All rights reserved.</p>
           </div>
         </div>
       </div>
@@ -177,6 +206,7 @@
     ></script>
 
     <!-- JS Link -->
+    <script src="js/phaser.js"></script>
     <script src="js/game.js"></script>
     <script src="js/script.js"></script>
   </body>
