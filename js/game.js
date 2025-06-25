@@ -35,21 +35,28 @@ class startScene extends Phaser.Scene {
     this.add
       .text(this.sys.game.config.width / 2, this.sys.game.config.height / 2 - 250, 'Dungeon Escape!', {
         fontFamily: '"Press Start 2P"',
-        fontSize: '40px',
-        fill: '#344a5a',
+        fontSize: '38px',
+        fill: '#7B7B7B',
         stroke: 'black',
-        strokeThickness: 6,
+        strokeThickness: 15,
       })
       .setOrigin(0.5);
 
-    this.add
-      .text(this.sys.game.config.width / 2, this.sys.game.config.height / 2 + 275, 'Click or Tap to play!', {
-        font: '28px Arial',
-        fill: '#fff',
-        stroke: '#000',
-        strokeThickness: 4,
-      })
-      .setOrigin(0.5);
+    this.tweens.add({
+      targets: this.add
+        .text(this.sys.game.config.width / 2, this.sys.game.config.height / 2 + 275, 'Click or Tap to play!', {
+          fontFamily: '"Press Start 2P"',
+          fontSize: '18px',
+          fill: '#7B7B7B',
+          stroke: 'black',
+          strokeThickness: 10,
+        })
+        .setOrigin(0.5),
+      alpha: 0,
+      yoyo: true,
+      repeat: -1,
+      duration: 500,
+    });
 
     this.input.once('pointerdown', () => this.scene.start('mainScene'));
     this.input.keyboard.once('keydown-ENTER', () => this.scene.start('mainScene'));
@@ -63,8 +70,33 @@ class mainScene extends Phaser.Scene {
     super('mainScene');
   }
 
-  preload() {}
-  create() {}
+  preload() {
+    // Tiled Map
+    this.load.tilemapTiledJSON('dungeon-map', 'assets/phaser/tilesets/dungeon-map.tmj'); // Personalized map made by ME with Tiled! :D
+
+    // Sprites
+    this.load.spritesheet('floor', 'assets/phaser/tilesets/floor.png', { frameWidth: 16, frameHeight: 16 });
+    this.load.spritesheet('walls', 'assets/phaser/tilesets/walls.png', { frameWidth: 16, frameHeight: 16 });
+    this.load.spritesheet('walls-doors', 'assets/phaser/tilesets/walls-doors.png', { frameWidth: 16, frameHeight: 16 });
+    this.load.spritesheet('mixed', 'assets/phaser/tilesets/mixed.png', { frameWidth: 16, frameHeight: 16 });
+    this.load.spritesheet('hero', 'assets/sprites/hero.png', { frameWidth: 32, frameHeight: 32 });
+    this.load.spritesheet('monster', 'assets/sprites/monster.png', { frameWidth: 32, frameHeight: 32 });
+  }
+  create() {
+    // Map and layers
+    const map = this.make.tilemap({ key: 'dungeon-map' });
+    const lFloor = map.addTilesetImage('floor');
+    const lMixed = map.addTilesetImage('mixed');
+    const lWalls = map.addTilesetImage('walls');
+    const lWallsDoors = map.addTilesetImage('walls-doors');
+
+    map.createLayer('ground', [lFloor, lMixed]);
+    const wallsLayer = map.createLayer('walls', [lMixed, lWalls, lWallsDoors]);
+    const doorClose = map.createLayer('door-close', [lWallsDoors]);
+    const doorOpen = map.createLayer('door-open', [lWallsDoors]);
+    doorOpen.setDepth(10);
+  }
+
   update() {}
 }
 
