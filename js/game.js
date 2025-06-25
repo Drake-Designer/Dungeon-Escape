@@ -15,6 +15,11 @@ let keyboardWASD;
 
 // -------------------------------------> Global Functions
 
+/** Detects if device is mobile/touch */
+function isMobileDevice() {
+  return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+}
+
 /**
  * Moves the hero with keyboard (arrow keys or WASD).
  * Starts walking animation when moving, stops it when not.
@@ -47,63 +52,41 @@ function heroMove() {
 }
 
 /**
- * Hero movements for mobile touch devices
+ * Moves the hero in the direction you tap, based on hero's position.
+ * Tap above = move up, tap below = move down, etc.
  * @param {mainScene} scene - (this)
  */
 function heroTouchMovements(scene) {
-  let swipeStart;
+  const speed = 120;
 
   scene.input.on('pointerdown', (pointer) => {
-    swipeStart = { x: pointer.x, y: pointer.y };
-  });
-
-  scene.input.on('pointerup', (pointer) => {
-    if (!swipeStart) return;
-
-    const dx = pointer.x - swipeStart.x;
-    const dy = pointer.y - swipeStart.y;
-
-    if (Math.abs(dx) < 30 && Math.abs(dy) < 30) {
-      swipeStart = null;
-      return;
-    }
-
-    const speed = 120;
-
-    hero.setVelocity(0);
+    const dx = pointer.x - hero.x;
+    const dy = pointer.y - hero.y;
 
     if (Math.abs(dx) > Math.abs(dy)) {
-      if (dx > 0) {
-        hero.setVelocity(speed, 0);
-      } else {
-        hero.setVelocity(-speed, 0);
-      }
+      hero.setVelocity(dx > 0 ? speed : -speed, 0);
     } else {
-      if (dy > 0) {
-        hero.setVelocity(0, speed);
-      } else {
-        hero.setVelocity(0, -speed);
-      }
+      hero.setVelocity(0, dy > 0 ? speed : -speed);
     }
-
     hero.anims.play('hero-walk', true);
+  });
 
-    setTimeout(() => {
-      hero.setVelocity(0);
-      hero.anims.stop();
-      hero.setFrame(0);
-    }, 180);
+  scene.input.on('pointerup', () => {
+    hero.setVelocity(0, 0);
+    hero.anims.stop();
+    hero.setFrame(0);
+  });
 
-    swipeStart = null;
+  scene.input.on('pointerout', () => {
+    hero.setVelocity(0, 0);
+    hero.anims.stop();
+    hero.setFrame(0);
   });
 }
 
 function monsterMove() {}
-
 function generateKeys() {}
-
 function heroGetKey() {}
-
 function openDoor() {}
 
 // -------------------------------------> Start Game Scene
@@ -203,16 +186,18 @@ class mainScene extends Phaser.Scene {
       repeat: -1,
     });
 
-    // Hero Movements (Desktop + Mobile)
-    keyboardCursors = this.input.keyboard.createCursorKeys();
-    keyboardWASD = this.input.keyboard.addKeys({
-      up: Phaser.Input.Keyboard.KeyCodes.W,
-      down: Phaser.Input.Keyboard.KeyCodes.S,
-      left: Phaser.Input.Keyboard.KeyCodes.A,
-      right: Phaser.Input.Keyboard.KeyCodes.D,
-    });
-
-    heroTouchMovements(this);
+    // Hero Movements
+    if (isMobileDevice()) {
+      heroTouchMovements(this); // Mobile: tap/hold on screen
+    } else {
+      keyboardCursors = this.input.keyboard.createCursorKeys();
+      keyboardWASD = this.input.keyboard.addKeys({
+        up: Phaser.Input.Keyboard.KeyCodes.W,
+        down: Phaser.Input.Keyboard.KeyCodes.S,
+        left: Phaser.Input.Keyboard.KeyCodes.A,
+        right: Phaser.Input.Keyboard.KeyCodes.D,
+      });
+    }
 
     // Monsters
     monsters = this.add.group();
@@ -235,7 +220,9 @@ class mainScene extends Phaser.Scene {
   }
 
   update() {
-    heroMove();
+    if (!isMobileDevice()) {
+      heroMove();
+    }
   }
 }
 
