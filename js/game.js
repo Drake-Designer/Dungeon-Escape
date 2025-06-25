@@ -46,6 +46,58 @@ function heroMove() {
   }
 }
 
+/**
+ * Hero movements for mobile touch devices
+ * @param {mainScene} scene - (this)
+ */
+function heroTouchMovements(scene) {
+  let swipeStart;
+
+  scene.input.on('pointerdown', (pointer) => {
+    swipeStart = { x: pointer.x, y: pointer.y };
+  });
+
+  scene.input.on('pointerup', (pointer) => {
+    if (!swipeStart) return;
+
+    const dx = pointer.x - swipeStart.x;
+    const dy = pointer.y - swipeStart.y;
+
+    if (Math.abs(dx) < 30 && Math.abs(dy) < 30) {
+      swipeStart = null;
+      return;
+    }
+
+    const speed = 120;
+
+    hero.setVelocity(0);
+
+    if (Math.abs(dx) > Math.abs(dy)) {
+      if (dx > 0) {
+        hero.setVelocity(speed, 0);
+      } else {
+        hero.setVelocity(-speed, 0);
+      }
+    } else {
+      if (dy > 0) {
+        hero.setVelocity(0, speed);
+      } else {
+        hero.setVelocity(0, -speed);
+      }
+    }
+
+    hero.anims.play('hero-walk', true);
+
+    setTimeout(() => {
+      hero.setVelocity(0);
+      hero.anims.stop();
+      hero.setFrame(0);
+    }, 180);
+
+    swipeStart = null;
+  });
+}
+
 function monsterMove() {}
 
 function generateKeys() {}
@@ -151,7 +203,7 @@ class mainScene extends Phaser.Scene {
       repeat: -1,
     });
 
-    // Hero Movements
+    // Hero Movements (Desktop + Mobile)
     keyboardCursors = this.input.keyboard.createCursorKeys();
     keyboardWASD = this.input.keyboard.addKeys({
       up: Phaser.Input.Keyboard.KeyCodes.W,
@@ -159,6 +211,8 @@ class mainScene extends Phaser.Scene {
       left: Phaser.Input.Keyboard.KeyCodes.A,
       right: Phaser.Input.Keyboard.KeyCodes.D,
     });
+
+    heroTouchMovements(this);
 
     // Monsters
     monsters = this.add.group();
