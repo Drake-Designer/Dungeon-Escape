@@ -1,5 +1,6 @@
 // -------------------------------------> Global Variables
 
+// Hero and Monster
 let hero;
 let monsters = [];
 let positions = [
@@ -8,9 +9,42 @@ let positions = [
   { x: 115, y: 430 },
 ];
 
+// Hero Movements
+let keyboardCursors;
+let keyboardWASD;
+
 // -------------------------------------> Global Functions
 
-function heroMove() {}
+/**
+ * Moves the hero with keyboard (arrow keys or WASD).
+ * Starts walking animation when moving, stops it when not.
+ */
+function heroMove() {
+  const speed = 120;
+
+  hero.setVelocity(0);
+
+  let left = keyboardCursors && (keyboardCursors.left.isDown || keyboardWASD.left.isDown);
+  let right = keyboardCursors && (keyboardCursors.right.isDown || keyboardWASD.right.isDown);
+  let up = keyboardCursors && (keyboardCursors.up.isDown || keyboardWASD.up.isDown);
+  let down = keyboardCursors && (keyboardCursors.down.isDown || keyboardWASD.down.isDown);
+
+  let vx = 0;
+  let vy = 0;
+  if (left) vx = -speed;
+  else if (right) vx = speed;
+  if (up) vy = -speed;
+  else if (down) vy = speed;
+
+  hero.setVelocity(vx, vy);
+
+  if (vx !== 0 || vy !== 0) {
+    hero.anims.play('hero-walk', true);
+  } else {
+    hero.anims.stop();
+    hero.setFrame(0);
+  }
+}
 
 function monsterMove() {}
 
@@ -89,6 +123,7 @@ class mainScene extends Phaser.Scene {
     this.load.spritesheet('hero', 'assets/phaser/sprites/hero.png', { frameWidth: 32, frameHeight: 32 });
     this.load.spritesheet('monster', 'assets/phaser/sprites/monster.png', { frameWidth: 32, frameHeight: 32 });
   }
+
   create() {
     // Map and layers
     const map = this.make.tilemap({ key: 'dungeon-map' });
@@ -116,6 +151,15 @@ class mainScene extends Phaser.Scene {
       repeat: -1,
     });
 
+    // Hero Movements
+    keyboardCursors = this.input.keyboard.createCursorKeys();
+    keyboardWASD = this.input.keyboard.addKeys({
+      up: Phaser.Input.Keyboard.KeyCodes.W,
+      down: Phaser.Input.Keyboard.KeyCodes.S,
+      left: Phaser.Input.Keyboard.KeyCodes.A,
+      right: Phaser.Input.Keyboard.KeyCodes.D,
+    });
+
     // Monsters
     monsters = this.add.group();
 
@@ -136,7 +180,9 @@ class mainScene extends Phaser.Scene {
     });
   }
 
-  update() {}
+  update() {
+    heroMove();
+  }
 }
 
 // -------------------------------------> Phaser Configuration
