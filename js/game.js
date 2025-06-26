@@ -3,7 +3,7 @@
 // Hero and Monster
 let hero;
 let monsters = [];
-let positions = [
+let monsterPositions = [
   { x: 680, y: 110 },
   { x: 743, y: 550 },
   { x: 115, y: 430 },
@@ -23,6 +23,7 @@ function isMobileDevice() {
 /**
  * Moves the hero with keyboard (arrow keys or WASD).
  * Starts walking animation when moving, stops it when not.
+ * (Only keyboard - Desktop)
  */
 function heroMove() {
   const speed = 120;
@@ -54,20 +55,22 @@ function heroMove() {
 /**
  * Moves the hero in the direction you tap, based on hero's position.
  * Tap above = move up, tap below = move down, etc.
+ * (Only mobile devices)
  * @param {mainScene} scene - (this)
  */
 function heroTouchMovements(scene) {
   const speed = 120;
 
   scene.input.on('pointerdown', (pointer) => {
-    const dx = pointer.x - hero.x;
-    const dy = pointer.y - hero.y;
+    let dx = pointer.x - hero.x;
+    let dy = pointer.y - hero.y;
 
-    if (Math.abs(dx) > Math.abs(dy)) {
-      hero.setVelocity(dx > 0 ? speed : -speed, 0);
-    } else {
-      hero.setVelocity(0, dy > 0 ? speed : -speed);
-    }
+    let length = Math.sqrt(dx * dx + dy * dy);
+
+    dx = dx / length;
+    dy = dy / length;
+
+    hero.setVelocity(dx * speed, dy * speed);
     hero.anims.play('hero-walk', true);
   });
 
@@ -188,7 +191,7 @@ class mainScene extends Phaser.Scene {
 
     // Hero Movements
     if (isMobileDevice()) {
-      heroTouchMovements(this); // Mobile: tap/hold on screen
+      heroTouchMovements(this);
     } else {
       keyboardCursors = this.input.keyboard.createCursorKeys();
       keyboardWASD = this.input.keyboard.addKeys({
@@ -209,7 +212,7 @@ class mainScene extends Phaser.Scene {
       repeat: -1,
     });
 
-    positions.forEach((pos) => {
+    monsterPositions.forEach((pos) => {
       const monster = this.physics.add.sprite(pos.x, pos.y, 'monster');
       monster.body.setSize(18, 18);
       monster.anims.play('monster-walk');
