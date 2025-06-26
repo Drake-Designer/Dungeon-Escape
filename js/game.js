@@ -89,30 +89,42 @@ function heroTouchMovements(scene) {
 }
 
 /**
- * Makes monsters move left/right or up/down.
- * If a monster hits a wall or door, it turns around.
+ * Moves all monsters every frame.
+ * When a monster hits a wall or door, it immediately picks a new random direction
  */
 function monsterMove() {
-  monsters.getChildren().forEach((monster, i) => {
-    if (monster.dx === undefined && monster.dy === undefined) {
-      if (monsterPositions[i].dir === 'v') {
-        monster.dx = 0;
-        monster.dy = 50;
-      } else {
-        monster.dx = 50;
-        monster.dy = 0;
-      }
+  monsters.getChildren().forEach((monster) => {
+    if (monster.dx === undefined || monster.dy === undefined) {
+      monsterRandomDirection(monster);
     }
 
-    if (monster.body.blocked.left || monster.body.blocked.right) {
-      monster.dx *= -1;
-    }
-    if (monster.body.blocked.up || monster.body.blocked.down) {
-      monster.dy *= -1;
+    if (monster.body.blocked.left || monster.body.blocked.right || monster.body.blocked.up || monster.body.blocked.down) {
+      monsterRandomDirection(monster);
     }
 
     monster.setVelocity(monster.dx, monster.dy);
   });
+}
+
+/**
+ * Sets a random direction for the monster.
+ * @param {*} monster
+ */
+function monsterRandomDirection(monster) {
+  const speed = 80;
+  const directions = [
+    { dx: speed, dy: 0 },
+    { dx: -speed, dy: 0 },
+    { dx: 0, dy: speed },
+    { dx: 0, dy: -speed },
+    { dx: speed, dy: speed },
+    { dx: -speed, dy: speed },
+    { dx: speed, dy: -speed },
+    { dx: -speed, dy: -speed },
+  ];
+  const dir = directions[Math.floor(Math.random() * directions.length)];
+  monster.dx = dir.dx;
+  monster.dy = dir.dy;
 }
 
 function generateKeys() {}

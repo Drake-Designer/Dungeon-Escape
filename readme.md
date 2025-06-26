@@ -32,11 +32,11 @@
      - [Typography](#typography)
 3. [Features](#features)
 4. [Technologies Used](#technologies-used)
-   - [Favicon Creation & Integration](#favicon-creation--integration)
 5. [Testing & Bug Fixes](#testing--bug-fixes)
 6. [Validation](#validation)
 7. [Deployment](#deployment)
 8. [Credits](#credits)
+9. [Behind the Scenes!](#behind-the-scenes)
 
 ---
 
@@ -162,3 +162,77 @@ Fonts are loaded from Google Fonts for that authentic retro feel.
 ## Features
 
 ---
+
+## Behind the Scenes!
+
+### How the Monster Movement Evolved
+
+When I started working on Dungeon Escape, my original plan was simple: Monsters would only move up/down or left/right, just like old-school arcade games.
+
+But while testing, I made a funny mistake in the code: I changed monster.dx = 50; to monster.dy = 50; and suddenly, the monsters began to move diagonally.
+
+Instead of fixing this "bug," I thought: _"Wait, this actually looks cool! Why not let the monsters move in any direction, even diagonally? It makes the game feel more alive and unpredictable!"_
+
+So, with a bit of help from ChatGPT to refine the mechanics, I was able to updated the logic:
+
+Now, whenever a monster hits a wall, it immediately picks a completely random direction—up, down, left, right, or any diagonal—and keeps wandering through the dungeon like a real little creature with a mind of its own.
+
+Example (old logic):
+
+```js
+function monsterMove() {
+  monsters.getChildren().forEach((monster, i) => {
+    if (monster.dx === undefined && monster.dy === undefined) {
+      if (positions[i].dir === 'v') {
+        monster.dx = 0;
+        monster.dy = 80;
+      } else {
+        monster.dx = 80;
+        monster.dy = 0;
+      }
+    }
+    if (monster.body.blocked.left || monster.body.blocked.right) {
+      monster.dx *= -1;
+    }
+    if (monster.body.blocked.up || monster.body.blocked.down) {
+      monster.dy *= -1;
+    }
+    monster.setVelocity(monster.dx, monster.dy);
+  });
+}
+```
+
+Example (new logic):
+
+```js
+function monsterMove() {
+  monsters.getChildren().forEach((monster) => {
+    if (monster.dx === undefined || monster.dy === undefined) {
+      monsterRandomDirection(monster);
+    }
+    if (monster.body.blocked.left || monster.body.blocked.right || monster.body.blocked.up || monster.body.blocked.down) {
+      monsterRandomDirection(monster);
+    }
+    monster.setVelocity(monster.dx, monster.dy);
+  });
+}
+
+function monsterRandomDirection(monster) {
+  const speed = 80;
+  const directions = [
+    { dx: speed, dy: 0 },
+    { dx: -speed, dy: 0 },
+    { dx: 0, dy: speed },
+    { dx: 0, dy: -speed },
+    { dx: speed, dy: speed },
+    { dx: -speed, dy: speed },
+    { dx: speed, dy: -speed },
+    { dx: -speed, dy: -speed },
+  ];
+  const dir = directions[Math.floor(Math.random() * directions.length)];
+  monster.dx = dir.dx;
+  monster.dy = dir.dy;
+}
+```
+
+That was a nice surprise for me, and it made me realize that mistakes can be fantastic sometimes! 😄
