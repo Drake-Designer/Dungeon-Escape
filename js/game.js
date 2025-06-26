@@ -4,10 +4,10 @@
 let hero;
 let monsters = [];
 let monsterPositions = [
-  { x: 680, y: 110 },
-  { x: 743, y: 550 },
-  { x: 115, y: 430 },
-  { x: 200, y: 300 },
+  { x: 680, y: 110, dir: 'h' },
+  { x: 743, y: 550, dir: 'v' },
+  { x: 115, y: 430, dir: 'h' },
+  { x: 200, y: 300, dir: 'h' },
 ];
 
 // Hero Movements
@@ -88,9 +88,37 @@ function heroTouchMovements(scene) {
   });
 }
 
-function monsterMove() {}
+/**
+ * Makes monsters move left/right or up/down.
+ * If a monster hits a wall or door, it turns around.
+ */
+function monsterMove() {
+  monsters.getChildren().forEach((monster, i) => {
+    if (monster.dx === undefined && monster.dy === undefined) {
+      if (monsterPositions[i].dir === 'v') {
+        monster.dx = 0;
+        monster.dy = 50;
+      } else {
+        monster.dx = 50;
+        monster.dy = 0;
+      }
+    }
+
+    if (monster.body.blocked.left || monster.body.blocked.right) {
+      monster.dx *= -1;
+    }
+    if (monster.body.blocked.up || monster.body.blocked.down) {
+      monster.dy *= -1;
+    }
+
+    monster.setVelocity(monster.dx, monster.dy);
+  });
+}
+
 function generateKeys() {}
+
 function heroGetKey() {}
+
 function openDoor() {}
 
 // -------------------------------------> Start Game Scene
@@ -181,7 +209,8 @@ class mainScene extends Phaser.Scene {
 
     // Hero
     hero = this.physics.add.sprite(60, 60, 'hero');
-    hero.body.setSize(18, 18);
+    hero.body.setSize(18, 27);
+    hero.body.setOffset(7, 6);
 
     this.anims.create({
       key: 'hero-walk',
@@ -215,13 +244,11 @@ class mainScene extends Phaser.Scene {
 
     monsterPositions.forEach((pos) => {
       const monster = this.physics.add.sprite(pos.x, pos.y, 'monster');
-      monster.body.setSize(18, 18);
+      monster.body.setSize(18, 27);
+      monster.body.setOffset(7, 6);
       monster.anims.play('monster-walk');
-
-      // Monsters Collision
-      this.physics.add.collider(monster, wallsLayer);
-      this.physics.add.collider(monster, doorClose);
-
+      this.physics.add.collider(monster, wallsLayer); // collisione con muri
+      this.physics.add.collider(monster, doorClose); // collisione con porte chiuse
       monsters.add(monster);
     });
 
@@ -236,6 +263,8 @@ class mainScene extends Phaser.Scene {
     if (!isMobileDevice()) {
       heroMove();
     }
+
+    monsterMove();
   }
 }
 

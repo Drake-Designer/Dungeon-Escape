@@ -46,7 +46,7 @@
          "name":"ground",
          "opacity":1,
          "type":"tilelayer",
-         "visible":false,
+         "visible":true,
          "width":50,
          "x":0,
          "y":0
@@ -101,7 +101,7 @@
                  "value":true
                 }],
          "type":"tilelayer",
-         "visible":false,
+         "visible":true,
          "width":50,
          "x":0,
          "y":0
@@ -307,7 +307,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -362,7 +362,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }],
@@ -376,7 +376,7 @@
         {
          "columns":32,
          "firstgid":1,
-         "image":"..\/tilesets\/mixed.png",
+         "image":"..\/..\/..\/..\/learning-js\/assets\/tilesets\/mixed.png",
          "imageheight":512,
          "imagewidth":512,
          "margin":0,
@@ -9626,7 +9626,7 @@
         {
          "columns":12,
          "firstgid":1025,
-         "image":"..\/tilesets\/walls.png",
+         "image":"..\/..\/..\/..\/learning-js\/assets\/tilesets\/walls.png",
          "imageheight":64,
          "imagewidth":192,
          "margin":0,
@@ -10072,7 +10072,7 @@
         {
          "columns":24,
          "firstgid":1073,
-         "image":"..\/tilesets\/walls-doors.png",
+         "image":"..\/..\/..\/..\/learning-js\/assets\/tilesets\/walls-doors.png",
          "imageheight":128,
          "imagewidth":384,
          "margin":0,
@@ -10087,7 +10087,7 @@
                         {
                          "name":"collides",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }]
                 }, 
                 {
@@ -11637,7 +11637,7 @@
         {
          "columns":7,
          "firstgid":1265,
-         "image":"..\/tilesets\/floor.png",
+         "image":"..\/..\/..\/..\/learning-js\/assets\/tilesets\/floor.png",
          "imageheight":112,
          "imagewidth":112,
          "margin":0,
