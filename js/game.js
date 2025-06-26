@@ -7,6 +7,7 @@ let monsterPositions = [
   { x: 680, y: 110 },
   { x: 743, y: 550 },
   { x: 115, y: 430 },
+  { x: 200, y: 300 },
 ];
 
 // Hero Movements
@@ -26,7 +27,7 @@ function isMobileDevice() {
  * (Only keyboard - Desktop)
  */
 function heroMove() {
-  const speed = 120;
+  const speed = 250;
 
   hero.setVelocity(0);
 
@@ -216,10 +217,19 @@ class mainScene extends Phaser.Scene {
       const monster = this.physics.add.sprite(pos.x, pos.y, 'monster');
       monster.body.setSize(18, 18);
       monster.anims.play('monster-walk');
+
+      // Monsters Collision
       this.physics.add.collider(monster, wallsLayer);
       this.physics.add.collider(monster, doorClose);
+
       monsters.add(monster);
     });
+
+    // Hero Collision
+    wallsLayer.setCollisionByProperty({ collides: true });
+    doorClose.setCollisionByProperty({ collides: true });
+    this.physics.add.collider(hero, wallsLayer);
+    this.physics.add.collider(hero, doorClose);
   }
 
   update() {
