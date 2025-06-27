@@ -10,7 +10,7 @@ let monsterPositions = [
   { x: 200, y: 300, dir: 'h' },
 ];
 
-// Hero Movements
+// Hero movements
 let keyboardCursors;
 let keyboardWASD;
 
@@ -197,6 +197,9 @@ class mainScene extends Phaser.Scene {
     this.load.spritesheet('walls', 'assets/phaser/tilesets/walls.png', { frameWidth: 16, frameHeight: 16 });
     this.load.spritesheet('walls-doors', 'assets/phaser/tilesets/walls-doors.png', { frameWidth: 16, frameHeight: 16 });
     this.load.spritesheet('mixed', 'assets/phaser/tilesets/mixed.png', { frameWidth: 16, frameHeight: 16 });
+    this.load.spritesheet('chest', 'assets/phaser/tilesets/chest.png', { frameWidth: 16, frameHeight: 15 });
+    this.load.spritesheet('door-close', 'assets/phaser/tilesets/door-close.png', { frameWidth: 42, frameHeight: 35 });
+    this.load.spritesheet('door-open', 'assets/phaser/tilesets/door-open.png', { frameWidth: 42, frameHeight: 35 });
 
     // Sprites Hero and Monster
     this.load.spritesheet('hero', 'assets/phaser/sprites/hero.png', { frameWidth: 32, frameHeight: 32 });
@@ -213,11 +216,18 @@ class mainScene extends Phaser.Scene {
 
     map.createLayer('ground', [lFloor, lMixed]);
     const wallsLayer = map.createLayer('walls', [lMixed, lWalls, lWallsDoors]);
-    const doorClose = map.createLayer('door-close', [lWallsDoors]);
-    const doorOpen = map.createLayer('door-open', [lWallsDoors]);
 
     // Objects: chests
-    const chests = map.getObjectLayer('chests');
+    this.chests = this.physics.add.staticGroup();
+    const chestObjects = map.getObjectLayer('chests').objects;
+
+    chestObjects.forEach((obj) => {
+      const chest = this.chests.create(obj.x, obj.y, 'chest').setOrigin(0, 1);
+      chest.setData('chestID', obj.properties.find((p) => p.name === 'chestID')?.value);
+      chest.setData('keyID', obj.properties.find((p) => p.name === 'keyID')?.value || 0);
+      chest.body.setSize(16, 15);
+      chest.body.setOffset(8, -8);
+    });
 
     // Hero
     hero = this.physics.add.sprite(60, 60, 'hero');
@@ -231,7 +241,7 @@ class mainScene extends Phaser.Scene {
       repeat: -1,
     });
 
-    // Hero Movements
+    // Hero movements
     if (isMobileDevice()) {
       heroTouchMovements(this);
     } else {
@@ -259,16 +269,23 @@ class mainScene extends Phaser.Scene {
       monster.body.setSize(18, 27);
       monster.body.setOffset(7, 6);
       monster.anims.play('monster-walk');
-      this.physics.add.collider(monster, wallsLayer); // collisione con muri
-      this.physics.add.collider(monster, doorClose); // collisione con porte chiuse
+      this.physics.add.collider(monster, wallsLayer);
       monsters.add(monster);
     });
 
-    // Hero Collision
+    // Collison property
     wallsLayer.setCollisionByProperty({ collides: true });
-    doorClose.setCollisionByProperty({ collides: true });
+
+    // Hero collision
+
     this.physics.add.collider(hero, wallsLayer);
-    this.physics.add.collider(hero, doorClose);
+    this.physics.add.collider(hero, this.chests);
+    this.physics.add.collider(hero, monsters);
+
+    // Monster collision
+    this.physics.add.collider(monsters, wallsLayer);
+    this.physics.add.collider(monsters, this.chests);
+    this.physics.add.collider(monsters, monsters);
   }
 
   update() {

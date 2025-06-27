@@ -169,11 +169,11 @@ Fonts are loaded from Google Fonts for that authentic retro feel.
 
 When I started working on Dungeon Escape, my original plan was simple: Monsters would only move up/down or left/right, just like old-school arcade games.
 
-But while testing, I made a funny mistake in the code: I changed monster.dx = 50; to monster.dy = 50; and suddenly, the monsters began to move diagonally.
+But while testing, I made a funny mistake in the code: I changed monster.dx = 50; and monster.dy = 50; and suddenly, the monsters began to move diagonally.
 
 Instead of fixing this "bug," I thought: _"Wait, this actually looks cool! Why not let the monsters move in any direction, even diagonally? It makes the game feel more alive and unpredictable!"_
 
-So, with a bit of help from ChatGPT to refine the mechanics, I was able to updated the logic:
+So, with a bit of help from ChatGPT to refine the mechanics, I updated the logic:
 
 Now, whenever a monster hits a wall, it immediately picks a completely random direction—up, down, left, right, or any diagonal—and keeps wandering through the dungeon like a real little creature with a mind of its own.
 
