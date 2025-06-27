@@ -145,20 +145,37 @@ function generateKeys(chestsGroup) {
   });
 }
 
+/**
+ * When the hero touches a chest:
+ * - If the chest has a key, the hero collects it, sees a message, and the chest is removed from the map.
+ * - If there is no key, the hero sees a message that the chest is empty.
+ * @param {Object} hero
+ * @param {Object} chest
+ */
 function heroGetKey(hero, chest) {
   const keyID = Number(chest.getData('keyID'));
   const scene = hero.scene;
 
   if (keyID === 1 || keyID === 2) {
     showMessage(scene, 'You have got a key!', chest.x, chest.y);
+    heroKeys.push(keyID);
+    console.log('heroKeys:', heroKeys); //TEST
     chest.setData('keyID', 0);
-    chest.body.enable = false;
+    chest.destroy();
   } else {
     showMessage(scene, 'The chest is empty!', chest.x, chest.y);
     chest.body.enable = false;
   }
 }
 
+/**
+ * Shows a message on the screen at the given position for 4 seconds.
+ *
+ * @param {Object} scene
+ * @param {string} text
+ * @param {number} x
+ * @param {number} y
+ */
 function showMessage(scene, text, x, y) {
   scene.messageText.setText(text);
   scene.messageText.setPosition(x, y - 18);
@@ -358,6 +375,7 @@ class mainScene extends Phaser.Scene {
 
     generateKeys(this.chests);
 
+    //TEST
     this.chests.getChildren().forEach((chest, i) => {
       console.log(`chestID ${chest.getData('chestID')}: keyID = ${chest.getData('keyID')}`);
     });
