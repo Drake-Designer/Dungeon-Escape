@@ -63,7 +63,7 @@ function heroMove() {
  * @param {mainScene} scene - (this)
  */
 function heroTouchMovements(scene) {
-  const speed = 120;
+  const speed = 300;
 
   scene.input.on('pointerdown', (pointer) => {
     let dx = pointer.x - hero.x;
@@ -143,6 +143,31 @@ function generateKeys(chestsGroup) {
   chests.forEach((chest, i) => {
     chest.setData('keyID', keys[i]);
   });
+}
+
+function heroGetKey(hero, chest) {
+  const keyID = Number(chest.getData('keyID'));
+  const scene = hero.scene;
+
+  if (keyID === 1 || keyID === 2) {
+    showMessage(scene, 'You have got a key!', chest.x, chest.y);
+    chest.setData('keyID', 0);
+    chest.body.enable = false;
+  } else {
+    showMessage(scene, 'The chest is empty!', chest.x, chest.y);
+    chest.body.enable = false;
+  }
+}
+
+function showMessage(scene, text, x, y) {
+  scene.messageText.setText(text);
+  scene.messageText.setPosition(x, y - 18);
+  scene.messageText.setVisible(true);
+
+  clearTimeout(scene.messageTimer);
+  scene.messageTimer = setTimeout(() => {
+    scene.messageText.setVisible(false);
+  }, 4000);
 }
 
 // -------------------------------------> Start Game Scene
@@ -253,6 +278,20 @@ class mainScene extends Phaser.Scene {
       door.body.setOffset(26, -11);
     });
 
+    // Messaggio sopra oggetti (init nascosto)
+    this.messageText = this.add
+      .text(0, 0, '', {
+        fontFamily: '"Press Start 2P"',
+        fontSize: '14px',
+        color: '#fff',
+        backgroundColor: '#222',
+        padding: { x: 10, y: 5 },
+        align: 'center',
+      })
+      .setOrigin(0.5, 1)
+      .setDepth(100)
+      .setVisible(false);
+
     // Hero
     hero = this.physics.add.sprite(60, 60, 'hero');
     hero.body.setSize(18, 27);
@@ -305,6 +344,8 @@ class mainScene extends Phaser.Scene {
     this.physics.add.collider(hero, this.doors);
     this.physics.add.collider(hero, monsters);
 
+    this.physics.add.overlap(hero, this.chests, heroGetKey, null, this);
+
     // Monster collision
     this.physics.add.collider(monsters, wallsLayer);
     this.physics.add.collider(monsters, this.chests);
@@ -318,7 +359,7 @@ class mainScene extends Phaser.Scene {
     generateKeys(this.chests);
 
     this.chests.getChildren().forEach((chest, i) => {
-      console.log(`Chest #${i}: keyID = ${chest.getData('keyID')}`);
+      console.log(`chestID ${chest.getData('chestID')}: keyID = ${chest.getData('keyID')}`);
     });
   }
 
