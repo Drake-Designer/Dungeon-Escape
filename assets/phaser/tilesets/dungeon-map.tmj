@@ -128,11 +128,6 @@
                          "value":true
                         }, 
                         {
-                         "name":"hasKey",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
                          "name":"keyID",
                          "type":"int",
                          "value":0
@@ -159,11 +154,6 @@
                          "name":"collides",
                          "type":"bool",
                          "value":true
-                        }, 
-                        {
-                         "name":"hasKey",
-                         "type":"bool",
-                         "value":false
                         }, 
                         {
                          "name":"keyID",
@@ -194,11 +184,6 @@
                          "value":true
                         }, 
                         {
-                         "name":"hasKey",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
                          "name":"keyID",
                          "type":"int",
                          "value":0
@@ -226,6 +211,22 @@
                  "height":26.3030303030304,
                  "id":44,
                  "name":"",
+                 "properties":[
+                        {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"doorID",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"open",
+                         "type":"bool",
+                         "value":false
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -242,7 +243,7 @@
                         {
                          "name":"collides",
                          "type":"bool",
-                         "value":false
+                         "value":true
                         }, 
                         {
                          "name":"doorID",

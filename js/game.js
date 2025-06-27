@@ -14,6 +14,9 @@ let monsterPositions = [
 let keyboardCursors;
 let keyboardWASD;
 
+// Keys
+let heroKeys = [];
+
 // -------------------------------------> Global Functions
 
 /** Detects if device is mobile/touch */
@@ -127,11 +130,20 @@ function monsterRandomDirection(monster) {
   monster.dy = dir.dy;
 }
 
-function generateKeys() {}
+/** Mixes up the three key values and gives one to each chest.
+ * Adds a 'keyID' to every chest in the group.
+ * @param {*} this.chests
+ */
+function generateKeys(chestsGroup) {
+  const keys = [1, 2, 0];
+  Phaser.Utils.Array.Shuffle(keys);
 
-function heroGetKey() {}
+  const chests = chestsGroup.getChildren();
 
-function openDoor() {}
+  chests.forEach((chest, i) => {
+    chest.setData('keyID', keys[i]);
+  });
+}
 
 // -------------------------------------> Start Game Scene
 
@@ -229,6 +241,18 @@ class mainScene extends Phaser.Scene {
       chest.body.setOffset(8, -8);
     });
 
+    // Objects: doors
+    this.doors = this.physics.add.staticGroup();
+    const doorObjects = map.getObjectLayer('doors').objects;
+
+    doorObjects.forEach((obj) => {
+      const door = this.doors.create(obj.x, obj.y, 'door-close').setOrigin(0, 1);
+      door.setData('doorID', obj.properties.find((p) => p.name === 'doorID')?.value);
+      door.setData('open', !!obj.properties.find((p) => p.name === 'open')?.value);
+      door.body.setSize(32, 26);
+      door.body.setOffset(26, -11);
+    });
+
     // Hero
     hero = this.physics.add.sprite(60, 60, 'hero');
     hero.body.setSize(18, 27);
@@ -273,21 +297,28 @@ class mainScene extends Phaser.Scene {
       monsters.add(monster);
     });
 
-    // Collison property
+    // Collision property
     wallsLayer.setCollisionByProperty({ collides: true });
 
     // Hero collision
-
     this.physics.add.collider(hero, wallsLayer);
-    this.physics.add.collider(hero, this.chests);
+    this.physics.add.collider(hero, this.doors);
     this.physics.add.collider(hero, monsters);
 
     // Monster collision
     this.physics.add.collider(monsters, wallsLayer);
     this.physics.add.collider(monsters, this.chests);
+    this.physics.add.collider(monsters, this.doors);
+    this.physics.add.collider(monsters, this.chests);
     this.physics.add.collider(monsters, monsters, (monster1, monster2) => {
       monsterRandomDirection(monster1);
       monsterRandomDirection(monster2);
+    });
+
+    generateKeys(this.chests);
+
+    this.chests.getChildren().forEach((chest, i) => {
+      console.log(`Chest #${i}: keyID = ${chest.getData('keyID')}`);
     });
   }
 
