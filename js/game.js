@@ -182,6 +182,11 @@ function heroOpenDoor(hero, door) {
   if (!heroKeys.includes(doorID)) {
     showMessage(scene, 'The key does not work!', door.x, door.y);
     return;
+  } else {
+    showMessage(scene, 'You opened the door!', door.x, door.y);
+    door.setTexture('door-open');
+    door.body.checkCollision.none = true;
+    return;
   }
 }
 
