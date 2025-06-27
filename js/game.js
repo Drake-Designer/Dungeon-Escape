@@ -168,6 +168,18 @@ function heroGetKey(hero, chest) {
   }
 }
 
+function heroOpenDoor(hero, door) {
+  const scene = hero.scene;
+  const doorID = Number(door.getData('doorID'));
+
+  console.log(doorID); //TEST
+
+  if (heroKeys.length === 0) {
+    showMessage(scene, 'You need the key!', door.x, door.y);
+    return;
+  }
+}
+
 /**
  * Shows a message on the screen at the given position for 4 seconds.
  *
@@ -178,7 +190,7 @@ function heroGetKey(hero, chest) {
  */
 function showMessage(scene, text, x, y) {
   scene.messageText.setText(text);
-  scene.messageText.setPosition(x, y - 18);
+  scene.messageText.setPosition(x, y - 10);
   scene.messageText.setVisible(true);
 
   clearTimeout(scene.messageTimer);
@@ -290,12 +302,11 @@ class mainScene extends Phaser.Scene {
     doorObjects.forEach((obj) => {
       const door = this.doors.create(obj.x, obj.y, 'door-close').setOrigin(0, 1);
       door.setData('doorID', obj.properties.find((p) => p.name === 'doorID')?.value);
-      door.setData('open', !!obj.properties.find((p) => p.name === 'open')?.value);
       door.body.setSize(32, 26);
-      door.body.setOffset(26, -11);
+      door.body.setOffset(26, -8.5);
     });
 
-    // Messaggio sopra oggetti (init nascosto)
+    // Message (doors and chests)
     this.messageText = this.add
       .text(0, 0, '', {
         fontFamily: '"Press Start 2P"',
@@ -358,10 +369,10 @@ class mainScene extends Phaser.Scene {
 
     // Hero collision
     this.physics.add.collider(hero, wallsLayer);
-    this.physics.add.collider(hero, this.doors);
     this.physics.add.collider(hero, monsters);
 
-    this.physics.add.overlap(hero, this.chests, heroGetKey, null, this);
+    this.physics.add.overlap(hero, this.chests, heroGetKey);
+    this.physics.add.collider(hero, this.doors, heroOpenDoor);
 
     // Monster collision
     this.physics.add.collider(monsters, wallsLayer);
