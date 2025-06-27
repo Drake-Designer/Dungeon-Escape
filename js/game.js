@@ -285,7 +285,10 @@ class mainScene extends Phaser.Scene {
     // Monster collision
     this.physics.add.collider(monsters, wallsLayer);
     this.physics.add.collider(monsters, this.chests);
-    this.physics.add.collider(monsters, monsters);
+    this.physics.add.collider(monsters, monsters, (monster1, monster2) => {
+      monsterRandomDirection(monster1);
+      monsterRandomDirection(monster2);
+    });
   }
 
   update() {
