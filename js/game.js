@@ -178,6 +178,11 @@ function heroOpenDoor(hero, door) {
     showMessage(scene, 'You need the key!', door.x, door.y);
     return;
   }
+
+  if (!heroKeys.includes(doorID)) {
+    showMessage(scene, 'The key does not work!', door.x, door.y);
+    return;
+  }
 }
 
 /**
