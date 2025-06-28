@@ -200,7 +200,7 @@ function heroOpenDoor(hero, door) {
  */
 function showMessage(scene, text, x, y) {
   scene.messageText.setText(text);
-  scene.messageText.setPosition(x, y - 10);
+  scene.messageText.setPosition(x, y - -20);
   scene.messageText.setVisible(true);
 
   clearTimeout(scene.messageTimer);
@@ -274,8 +274,8 @@ class mainScene extends Phaser.Scene {
     this.load.spritesheet('walls-doors', 'assets/phaser/tilesets/walls-doors.png', { frameWidth: 16, frameHeight: 16 });
     this.load.spritesheet('mixed', 'assets/phaser/tilesets/mixed.png', { frameWidth: 16, frameHeight: 16 });
     this.load.spritesheet('chest', 'assets/phaser/tilesets/chest.png', { frameWidth: 16, frameHeight: 15 });
-    this.load.spritesheet('door-close', 'assets/phaser/tilesets/door-close.png', { frameWidth: 42, frameHeight: 35 });
-    this.load.spritesheet('door-open', 'assets/phaser/tilesets/door-open.png', { frameWidth: 42, frameHeight: 35 });
+    this.load.spritesheet('door-close', 'assets/phaser/tilesets/door-close.png', { frameWidth: 32, frameHeight: 32 });
+    this.load.spritesheet('door-open', 'assets/phaser/tilesets/door-open.png', { frameWidth: 32, frameHeight: 32 });
 
     // Sprites Hero and Monster
     this.load.spritesheet('hero', 'assets/phaser/sprites/hero.png', { frameWidth: 32, frameHeight: 32 });
@@ -298,22 +298,19 @@ class mainScene extends Phaser.Scene {
     const chestObjects = map.getObjectLayer('chests').objects;
 
     chestObjects.forEach((obj) => {
-      const chest = this.chests.create(obj.x, obj.y, 'chest').setOrigin(0, 1);
+      const chest = this.chests.create(obj.x, obj.y, 'chest');
       chest.setData('chestID', obj.properties.find((p) => p.name === 'chestID')?.value);
       chest.setData('keyID', obj.properties.find((p) => p.name === 'keyID')?.value || 0);
-      chest.body.setSize(16, 15);
-      chest.body.setOffset(8, -8);
     });
 
     // Objects: doors
+
     this.doors = this.physics.add.staticGroup();
     const doorObjects = map.getObjectLayer('doors').objects;
 
     doorObjects.forEach((obj) => {
-      const door = this.doors.create(obj.x, obj.y, 'door-close').setOrigin(0, 1);
+      const door = this.doors.create(obj.x, obj.y, 'door-close');
       door.setData('doorID', obj.properties.find((p) => p.name === 'doorID')?.value);
-      door.body.setSize(32, 26);
-      door.body.setOffset(26, -8.5);
     });
 
     // Message (doors and chests)
