@@ -30,13 +30,12 @@
      - [Wireframes](#wireframes)
      - [Colour Palette](#colour-palette)
      - [Typography](#typography)
-3. [Features](#features)
-4. [Technologies Used](#technologies-used)
-5. [Testing & Bug Fixes](#testing--bug-fixes)
-6. [Validation](#validation)
-7. [Deployment](#deployment)
-8. [Credits](#credits)
-9. [Behind the Scenes!](#behind-the-scenes)
+3. [Technologies Used](#technologies-used)
+4. [Testing & Bug Fixes](#testing--bug-fixes)
+5. [Validation](#validation)
+6. [Deployment](#deployment)
+7. [Credits](#credits)
+8. [Behind the Scenes!](#behind-the-scenes)
 
 ---
 
@@ -46,17 +45,19 @@ Welcome to **Dungeon Escape!**
 
 You are the hero, stuck in a dark dungeon... Your mission?
 
-**Find one of the hidden keys, avoid the monsters or they will eat you, and unlock the door to escape!**
+> Find one of the hidden keys, avoid the monsters or they will eat you, and unlock the door to escape!
+
+**Game Features**:
 
 - Move freely in real-time.
 - Monsters move around the dungeon, and they’ll chase you if you’re not careful!
 - Three chests to reach: two have the key, one is empty!
 - If a monster catches you, you lose!
-- Playable on desktop (with keyboard) and mobile (just tap).
+- Playable on desktop and mobile.
 
 ---
 
-## Scope
+### Scope
 
 The game is designed to practice JavaScript and Phaser 3 for classic grid-based gameplay:
 
@@ -66,7 +67,35 @@ The game is designed to practice JavaScript and Phaser 3 for classic grid-based 
 - Three chests, only two have keys to open the doors
 - Player must find a key, unlock a door, and escape while avoiding monsters
 - If a monster catches you, you lose!
-- Playable on desktop and mobile
+
+---
+
+### How Dungeon Escape! Was Born
+
+Dungeon Escape! was one of the most ‘dangerous’, risky… but also super fun and satisfying challenges I’ve ever done so far.
+
+> Why did I decide to present this as my PP2?
+
+Because since I was a kid, I’ve always wanted to create a game (even a simple or basic one) from scratch, with my own ideas and mechanics. So, while I was trying to figure out what to do for PP2, I came across [Phaser](https://phaser.io), a game framework that I fell in love with at first sight.
+
+That’s it… I just told myself: “Let’s do something crazy, I want to present a game that I built myself as my project!”
+
+Since I had no idea how Phaser worked, I decided to start with [Making your first Phaser 3 game](https://phaser.io/tutorials/making-your-first-phaser-3-game) from the official Phaser website, just to learn the basics. Then, I found a mini-course on Zenva ([Phaser Mini-Degree](https://academy.zenva.com/product/html5-game-phaser-mini-degree/)) to learn more features and figure out how to use the Phaser logic in JavaScript.
+
+I have to say, it was tough, and I definitely didn’t manage to learn everything at all… but at least I got to understand a lot of the mechanics and how to structure Dungeon Escape!
+
+So before starting the real project, I began with two walkthrough projects that were super important to help me understand how Phaser works.
+
+My github links projects:
+
+- [Phaser First Game Tutorial](https://github.com/Drake-Designer/Phaser-First-Game-Tutorial)
+- [Road Crossing Game](https://github.com/Drake-Designer/Road-Crossing-Game)
+
+And… even if I’ve already forgotten more than half of what I learned 😅, I still managed to get the mini-Phaser diploma! (But I definitely need to go back to the course, because there’s still a lot I need to learn properly and I didn’t have time to focus as much as I wanted!)
+
+![Wireframes](assets/readme-images/zenva-certificate.png)
+
+This whole experience really pushed me out of my comfort zone, but it made me even more excited to keep learning and building new things!
 
 ---
 
@@ -159,9 +188,175 @@ Fonts are loaded from Google Fonts for that authentic retro feel.
 
 ---
 
-## Features
+## Technologies Used
+
+### Core Web Technologies & Game Engine
+
+- HTML
+- CSS
+- JavaScript
+- [Phaser 3.90](https://phaser.io) – Game engine!
+
+### Development & Asset Creation Tools
+
+- [Tiled](https://www.mapeditor.org) – Map editor
+- [Piskel](https://www.piskelapp.com) – Pixel art sprite editor
+- [Photopea](https://www.photopea.com) – Online graphics editor
+- [RealFaviconGenerator](https://realfavicongenerator.net) – Favicon generator
+
+### Art & Asset Resources
+
+- [OpenGameArt](https://opengameart.org) – Free game assets
+- [Itch.io](https://itch.io) – Free game assets
+- [CraftPix](https://craftpix.net) – Free game assets
 
 ---
+
+## Testing & Bug Fixes
+
+### 🐞 BUG 1: Game Container & Phaser Canvas Sizing
+
+When I started building **Dungeon Escape!**, I wanted my Phaser game window to fit perfectly inside a `<div>` game-area on my web page, always centered and responsive.
+
+But I had to face a problem: the Phaser canvas never fit exactly inside my container!
+Sometimes there was a small part sticking out, or some borders were missing, or the canvas wasn’t fully centered.
+I tried changing scale modes, CSS tricks, Bootstrap, different aspect ratios... nothing really worked.
+
+My HTML looked like this:
+
+```cs
+<main class="main-container">
+  <div id="game-container"></div>
+</main>
+```
+
+And my Phaser config had:
+
+```cs
+scale: {
+  mode: Phaser.Scale.FIT,
+  autoCenter: Phaser.Scale.CENTER_BOTH,
+  width: 800,
+  height: 600,
+  parent: 'game-container'
+}
+```
+
+But the canvas still didn’t fit right in all browsers and on all screens.
+
+#### The Solution (Thanks, Discord!):
+
+After lots of searching, I asked for help on Discord (see screenshots below!).
+
+![Canvas Bug](assets/readme-images/bugs/canvas-bug-discord.png)
+
+A kind user suggested this simple strategy:
+
+![Canvas Bug 2](assets/readme-images/bugs/canvas-bug-discord-2.png)
+
+In the end, I decided to wrap the canvas in an extra `<div id="game-border">` to have better control over the border and centering with another CSS workaround:
+
+```cs
+/* -----------------------------------> Game container */
+
+.main-container {
+  flex: 1 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+#game-border {
+  width: 100%;
+  max-width: 1200px;
+  border: 2px solid red;
+  border-radius: 4px;
+  background: var(--bg-main);
+}
+
+#game-container {
+  width: 100%;
+  height: 100%;
+}
+
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 2px;
+}
+```
+
+That solution actually worked pretty well!
+
+Also, I realized I could make things even cleaner by using the parent property in my Phaser config to directly attach the game to my container div.
+
+Here’s the Phaser config I used:
+
+```cs
+const config = {
+  type: Phaser.AUTO,
+  width: 800,
+  height: 608,
+  parent: 'game-container',
+  physics: { default: 'arcade', arcade: { debug: true } },
+  scene: [startScene, mainScene],
+};
+```
+
+### 🐞 BUG 2: The Door & Chest Alignment!
+
+When I was almost close to finishing the game, I hit a frustrating bug:
+
+Doors and chests were always in the wrong place in Phaser compared to where I placed them in Tiled!
+
+No matter what I tried, changing the code, modifying the origin and offsets property... nothing matched up. It drove me crazy for a few days!
+
+### 🕵️‍♂️ Troubleshooting & Community Help
+
+After a lot of trial and error, I decided to ask for help on the Tiled forum and also on Discord (see screenshots below).
+
+![Tileset Bug Pic](assets/readme-images/bugs/alignment-bug-discord.png)
+
+A very helpful user on the forum explained that the problem could be fixed by changing the **Object Alignment** property of my tileset in Tiled. I had never noticed that option before!
+
+![Tileset Bug Pic](assets/readme-images/bugs/alignment-bug-tiled.png)
+
+---
+
+As soon as I set **Object Alignment** to **Center** in my tileset properties and re-placed my doors and chests, everything lined up perfectly in Phaser, no more weird offsets or manual fixes!
+
+---
+
+#### Before the fix:
+
+```js
+this.doors = this.physics.add.staticGroup();
+const doorObjects = map.getObjectLayer('doors').objects;
+
+doorObjects.forEach((obj) => {
+  const door = this.doors.create(obj.x, obj.y, 'door-close').setOrigin(0, 1);
+  door.setData('doorID', obj.properties.find((p) => p.name === 'doorID')?.value);
+  door.setData('open', !!obj.properties.find((p) => p.name === 'open')?.value);
+  door.body.setSize(32, 26);
+  door.body.setOffset(26, -11);
+});
+```
+
+![Tileset Map Bug](assets/readme-images/bugs/phaser-map-bug.png)
+
+#### After the fix:
+
+```js
+// Objects: doors
+this.doors = this.physics.add.staticGroup();
+const doorObjects = map.getObjectLayer('doors').objects;
+
+doorObjects.forEach((obj) => {
+  const door = this.doors.create(obj.x, obj.y, 'door-close');
+  door.setData('doorID', obj.properties.find((p) => p.name === 'doorID')?.value);
+});
+```
+
+![Tileset Map Bug](assets/readme-images/bugs/phaser-map-fix.png)
 
 ## Behind the Scenes!
 

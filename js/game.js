@@ -200,7 +200,7 @@ function heroOpenDoor(hero, door) {
  */
 function showMessage(scene, text, x, y) {
   scene.messageText.setText(text);
-  scene.messageText.setPosition(x, y - -20);
+  scene.messageText.setPosition(x, y - 0);
   scene.messageText.setVisible(true);
 
   clearTimeout(scene.messageTimer);
