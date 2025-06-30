@@ -188,6 +188,33 @@ canvas {
   border-radius: 2px;
 }
 
+/* -----------------------------------> Difficulty section */
+
+.difficulty-btn {
+  font-family: var(--font-arcade);
+  font-size: 1rem;
+  border-radius: 12px;
+}
+
+.difficulty-btn:hover {
+  background-color: #ffe08a;
+  color: #222;
+  border-color: #ffb600;
+}
+
+.difficulty-btn:focus {
+  background-color: #ffb600 !important;
+  color: #222 !important;
+  border-color: #ffb600 !important;
+  outline: none;
+}
+
+.difficulty-btn.active {
+  background-color: #ffb600 !important;
+  color: #222 !important;
+  border-color: #ffb600 !important;
+}
+
 /* -----------------------------------> Footer */
 
 #footer {
@@ -258,5 +285,15 @@ canvas {
   }
   .monster-gif {
     width: 24px;
+  }
+}
+
+/* Difficulty Section */
+
+@media (max-width: 990px) {
+  .difficulty-btn {
+    max-width: 65vw;
+    margin: 5px;
+    font-size: 1.1rem;
   }
 }

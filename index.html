@@ -85,58 +85,20 @@
       </div>
     </main>
 
-    <!-- How to Play Modal -->
-    <div id="howToPlayModal" class="modal fade" tabindex="-1" aria-labelledby="howToPlayLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h2 class="modal-title">How to Play</h2>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <ul class="how-to-play-list list-unstyled ps-3">
-              <!-- Desktop Controls -->
-              <h2>Desktop Controls</h2>
-              <li>
-                <i class="fa-solid fa-arrows-up-down-left-right"></i>
-                Use arrow keys or WASD to move your hero. Hold a direction to keep moving. The hero stops when you release the
-                key.
-              </li>
-
-              <!-- Mobile Controls -->
-              <h2>Mobile Controls</h2>
-              <li>
-                <i class="fa-solid fa-hand-pointer"></i>
-                Tap above, below, to the left, to the right, or in a diagonal direction from the hero to move. The hero will walk
-                toward where you tap. You can go straight or diagonal.
-              </li>
-
-              <!-- Game Rules -->
-              <h2>Game Rules</h2>
-              <li>
-                <i class="fa-solid fa-key me-2"></i>
-                Find one of the two keys hidden in three chests.
-              </li>
-              <li>
-                <i class="fa-solid fa-skull"></i>
-                Avoid the monsters roaming the dungeon.
-              </li>
-              <li>
-                <i class="fa-solid fa-door-closed me-2"></i>
-                Open a locked door with your key to escape.
-              </li>
-              <li>
-                <i class="fa-solid fa-skull-crossbones me-2"></i>
-                If a monster catches you, you lose!
-              </li>
-            </ul>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          </div>
+    <!-- Game Difficulty -->
+    <section class="container mt-3">
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <button type="button" class="btn btn-dark btn-lg difficulty-btn" id="btn-difficulty-1">Difficulty 1</button>
+        </div>
+        <div class="col-auto">
+          <button type="button" class="btn btn-dark btn-lg difficulty-btn" id="btn-difficulty-2">Difficulty 2</button>
+        </div>
+        <div class="col-auto">
+          <button type="button" class="btn btn-dark btn-lg difficulty-btn" id="btn-difficulty-3">Difficulty 3</button>
         </div>
       </div>
-    </div>
+    </section>
 
     <!-- Footer -->
     <footer id="footer">
@@ -216,6 +178,59 @@
         </div>
       </div>
     </footer>
+
+    <!-- How to Play Modal -->
+    <div id="howToPlayModal" class="modal fade" tabindex="-1" aria-labelledby="howToPlayLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title">How to Play</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <ul class="how-to-play-list list-unstyled ps-3">
+              <!-- Desktop Controls -->
+              <h2>Desktop Controls</h2>
+              <li>
+                <i class="fa-solid fa-arrows-up-down-left-right"></i>
+                Use arrow keys or WASD to move your hero. Hold a direction to keep moving. The hero stops when you release the
+                key.
+              </li>
+
+              <!-- Mobile Controls -->
+              <h2>Mobile Controls</h2>
+              <li>
+                <i class="fa-solid fa-hand-pointer"></i>
+                Tap above, below, to the left, to the right, or in a diagonal direction from the hero to move. The hero will walk
+                toward where you tap. You can go straight or diagonal.
+              </li>
+
+              <!-- Game Rules -->
+              <h2>Game Rules</h2>
+              <li>
+                <i class="fa-solid fa-key me-2"></i>
+                Find one of the two keys hidden in three chests.
+              </li>
+              <li>
+                <i class="fa-solid fa-skull"></i>
+                Avoid the monsters roaming the dungeon.
+              </li>
+              <li>
+                <i class="fa-solid fa-door-closed me-2"></i>
+                Open a locked door with your key to escape.
+              </li>
+              <li>
+                <i class="fa-solid fa-skull-crossbones me-2"></i>
+                If a monster catches you, you lose!
+              </li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Font Awesome Link -->
     <script src="https://kit.fontawesome.com/1632434743.js" crossorigin="anonymous"></script>

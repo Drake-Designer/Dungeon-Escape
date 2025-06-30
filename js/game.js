@@ -3,12 +3,6 @@
 // Hero and Monster
 let hero;
 let monsters = [];
-let monsterPositions = [
-  { x: 680, y: 110, dir: 'h' },
-  { x: 743, y: 550, dir: 'v' },
-  { x: 115, y: 430, dir: 'h' },
-  { x: 200, y: 300, dir: 'h' },
-];
 
 // Hero movements
 let keyboardCursors;
@@ -30,7 +24,7 @@ function isMobileDevice() {
  * (Only keyboard - Desktop)
  */
 function heroMove() {
-  const speed = 250;
+  const speed = 80;
 
   hero.setVelocity(0);
 
@@ -114,7 +108,7 @@ function monsterMove() {
  * @param {*} monster
  */
 function monsterRandomDirection(monster) {
-  const speed = 80;
+  const speed = monster.monsterSpeed || 80;
   const directions = [
     { dx: speed, dy: 0 },
     { dx: -speed, dy: 0 },
@@ -404,14 +398,38 @@ class mainScene extends Phaser.Scene {
       repeat: -1,
     });
 
-    monsterPositions.forEach((pos) => {
+    // Monsters difficulty (1-2-3)
+    let monsterSpeed = 70;
+    let numMonsters = 4;
+    if (window.gameDifficulty === 2) {
+      numMonsters = 6;
+      monsterSpeed = 100;
+    } else if (window.gameDifficulty === 3) {
+      numMonsters = 8;
+      monsterSpeed = 130;
+    }
+
+    const allPositions = [
+      { x: 680, y: 110, dir: 'h' },
+      { x: 743, y: 550, dir: 'v' },
+      { x: 115, y: 430, dir: 'h' },
+      { x: 200, y: 300, dir: 'h' },
+      { x: 400, y: 100, dir: 'v' },
+      { x: 700, y: 400, dir: 'h' },
+      { x: 350, y: 200, dir: 'v' },
+      { x: 600, y: 300, dir: 'h' },
+    ];
+
+    for (let i = 0; i < numMonsters; i++) {
+      const pos = allPositions[i];
       const monster = this.physics.add.sprite(pos.x, pos.y, 'monster');
       monster.body.setSize(18, 27);
       monster.body.setOffset(7, 6);
       monster.anims.play('monster-walk');
       this.physics.add.collider(monster, wallsLayer);
+      monster.monsterSpeed = monsterSpeed;
       monsters.add(monster);
-    });
+    }
 
     // Collision property
     wallsLayer.setCollisionByProperty({ collides: true });
