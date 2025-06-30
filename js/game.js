@@ -595,6 +595,9 @@ const config = {
   parent: 'game-container',
   physics: { default: 'arcade', arcade: { debug: false } },
   scene: [startScene, mainScene, winScene, gameOverScene],
+  audio: {
+    noAudio: true,
+  },
 };
 
 new Phaser.Game(config);
