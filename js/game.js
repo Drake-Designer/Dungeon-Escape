@@ -266,8 +266,8 @@ class startScene extends Phaser.Scene {
     this.add
       .text(this.sys.game.config.width / 2, this.sys.game.config.height / 2 - 250, 'Dungeon Escape!', {
         fontFamily: '"Press Start 2P"',
+        color: '#ffb600',
         fontSize: '38px',
-        fill: '#7B7B7B',
         stroke: 'black',
         strokeThickness: 15,
       })
@@ -418,7 +418,9 @@ class mainScene extends Phaser.Scene {
 
     // Hero collision
     this.physics.add.collider(hero, wallsLayer);
-    this.physics.add.collider(hero, monsters);
+    this.physics.add.collider(hero, monsters, () => {
+      this.scene.start('gameOverScene');
+    });
 
     this.physics.add.overlap(hero, this.chests, heroGetKey);
     this.physics.add.collider(hero, this.doors, heroOpenDoor);
@@ -458,12 +460,10 @@ class winScene extends Phaser.Scene {
   }
 
   preload() {
-    // Load the background image for the win screen
     this.load.image('win-bg', 'assets/phaser/background-image/win-background.png');
   }
 
   create() {
-    // Add the background image and make it cover the whole scene
     this.add
       .image(this.sys.game.config.width / 2, this.sys.game.config.height / 2, 'win-bg')
       .setOrigin(0.5)
@@ -473,7 +473,7 @@ class winScene extends Phaser.Scene {
     this.add
       .text(this.sys.game.config.width / 2, this.sys.game.config.height / 2 - 250, 'You have escaped the Dungeon!!', {
         fontFamily: '"Press Start 2P"',
-        fontSize: '20px',
+        fontSize: '25px',
         fill: '#ffb600',
         stroke: '#000',
         strokeThickness: 6,
@@ -481,7 +481,6 @@ class winScene extends Phaser.Scene {
       })
       .setOrigin(0.5);
 
-    // Message to restart the game
     this.tweens.add({
       targets: this.add
         .text(this.sys.game.config.width / 2, this.sys.game.config.height / 2 + 275, 'Click or Tap to play gain!', {
@@ -498,7 +497,65 @@ class winScene extends Phaser.Scene {
       duration: 500,
     });
 
-    // Restart the game when the player clicks or presses a key
+    this.input.once('pointerdown', () => this.scene.start('mainScene'));
+    this.input.keyboard.once('keydown', () => this.scene.start('mainScene'));
+  }
+}
+
+// -------------------------------------> Game Over Scene
+
+class gameOverScene extends Phaser.Scene {
+  constructor() {
+    super('gameOverScene');
+  }
+
+  preload() {
+    this.load.image('gameover-bg', 'assets/phaser/background-image/gameover-background.png');
+  }
+
+  create() {
+    this.add
+      .image(this.sys.game.config.width / 2, this.sys.game.config.height / 2, 'gameover-bg')
+      .setOrigin(0.5)
+      .setDisplaySize(this.sys.game.config.width, this.sys.game.config.height);
+
+    this.add
+      .text(
+        this.sys.game.config.width / 2,
+        this.sys.game.config.height / 2 - 250,
+        'You have been eaten by the monster! \nGAME OVER',
+        {
+          fontFamily: '"Press Start 2P"',
+          color: 'red',
+          fontSize: '20px',
+          stroke: 'black',
+          strokeThickness: 10,
+          align: 'center',
+        }
+      )
+      .setOrigin(0.5);
+
+    this.tweens.add({
+      targets: this.add
+        .text(
+          this.sys.game.config.width / 2,
+          this.sys.game.config.height / 2 + 275,
+          'Enter the dungeon again and try to escape!',
+          {
+            fontFamily: '"Press Start 2P"',
+            fontSize: '18px',
+            fill: '#7B7B7B',
+            stroke: 'black',
+            strokeThickness: 10,
+          }
+        )
+        .setOrigin(0.5),
+      alpha: 0,
+      yoyo: true,
+      repeat: -1,
+      duration: 500,
+    });
+
     this.input.once('pointerdown', () => this.scene.start('mainScene'));
     this.input.keyboard.once('keydown', () => this.scene.start('mainScene'));
   }
@@ -512,7 +569,7 @@ const config = {
   height: 608,
   parent: 'game-container',
   physics: { default: 'arcade', arcade: { debug: true } },
-  scene: [startScene, mainScene, winScene],
+  scene: [startScene, mainScene, winScene, gameOverScene],
 };
 
 new Phaser.Game(config);
