@@ -136,8 +136,8 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":184.065217391304,
-                 "y":360.021739130435
+                 "x":184.065,
+                 "y":360.022
                 }, 
                 {
                  "gid":1315,
@@ -164,7 +164,7 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":584.0625,
+                 "x":584.063,
                  "y":200
                 }, 
                 {
@@ -193,7 +193,7 @@
                  "visible":true,
                  "width":16,
                  "x":600,
-                 "y":360.0625
+                 "y":360.063
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -319,7 +319,7 @@
                         {
                          "name":"collides",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }]
                 }, 
                 {
@@ -328,7 +328,7 @@
                         {
                          "name":"collides",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }]
                 }, 
                 {
@@ -10709,7 +10709,7 @@
                         {
                          "name":"collides",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }]
                 }, 
                 {

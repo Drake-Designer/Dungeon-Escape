@@ -2,7 +2,8 @@
 
 // Hero and Monster
 let hero;
-let monsters = [];
+const heroSpeed = 80;
+let monsters;
 
 // Hero movements
 let keyboardCursors;
@@ -24,8 +25,6 @@ function isMobileDevice() {
  * (Only keyboard - Desktop)
  */
 function heroMove() {
-  const speed = 80;
-
   hero.setVelocity(0);
 
   let left = keyboardCursors && (keyboardCursors.left.isDown || keyboardWASD.left.isDown);
@@ -35,10 +34,10 @@ function heroMove() {
 
   let vx = 0;
   let vy = 0;
-  if (left) vx = -speed;
-  else if (right) vx = speed;
-  if (up) vy = -speed;
-  else if (down) vy = speed;
+  if (left) vx = -heroSpeed;
+  else if (right) vx = heroSpeed;
+  if (up) vy = -heroSpeed;
+  else if (down) vy = heroSpeed;
 
   hero.setVelocity(vx, vy);
 
@@ -57,8 +56,6 @@ function heroMove() {
  * @param {mainScene} scene - (this)
  */
 function heroTouchMovements(scene) {
-  const speed = 300;
-
   scene.input.on('pointerdown', (pointer) => {
     let dx = pointer.x - hero.x;
     let dy = pointer.y - hero.y;
@@ -68,7 +65,7 @@ function heroTouchMovements(scene) {
     dx = dx / length;
     dy = dy / length;
 
-    hero.setVelocity(dx * speed, dy * speed);
+    hero.setVelocity(dx * heroSpeed, dy * heroSpeed);
     hero.anims.play('hero-walk', true);
   });
 
@@ -108,16 +105,16 @@ function monsterMove() {
  * @param {*} monster
  */
 function monsterRandomDirection(monster) {
-  const speed = monster.monsterSpeed || 80;
+  const mSpeed = monster.monsterSpeed || 80;
   const directions = [
-    { dx: speed, dy: 0 },
-    { dx: -speed, dy: 0 },
-    { dx: 0, dy: speed },
-    { dx: 0, dy: -speed },
-    { dx: speed, dy: speed },
-    { dx: -speed, dy: speed },
-    { dx: speed, dy: -speed },
-    { dx: -speed, dy: -speed },
+    { dx: mSpeed, dy: 0 },
+    { dx: -mSpeed, dy: 0 },
+    { dx: 0, dy: mSpeed },
+    { dx: 0, dy: -mSpeed },
+    { dx: mSpeed, dy: mSpeed },
+    { dx: -mSpeed, dy: mSpeed },
+    { dx: mSpeed, dy: -mSpeed },
+    { dx: -mSpeed, dy: -mSpeed },
   ];
   const dir = directions[Math.floor(Math.random() * directions.length)];
   monster.dx = dir.dx;
@@ -158,7 +155,6 @@ function heroGetKey(hero, chest) {
     chest.destroy();
   } else {
     showMessage(scene, 'The chest is empty!', chest.x, chest.y);
-    chest.body.enable = false;
   }
 }
 
