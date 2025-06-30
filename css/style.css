@@ -1,6 +1,7 @@
 /* Google Font: Roboto, Cinzel Decorative, Press Start 2P, Uncial Antiqua, Pirata One */
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap&family=Pirata+One&display=swap&family=Press+Start+2P&display=swap&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap&family=Uncial+Antiqua&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Pirata+One&family=Press+Start+2P&family=Roboto:ital,wght@0,100..900;1,100..900&family=Uncial+Antiqua&display=swap');
+
 /* -----------------------------------> Root Colour Palette + Typography */
 
 :root {
