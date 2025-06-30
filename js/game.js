@@ -275,7 +275,7 @@ class startScene extends Phaser.Scene {
 
     this.tweens.add({
       targets: this.add
-        .text(this.sys.game.config.width / 2, this.sys.game.config.height / 2 + 275, 'Click or Tap to play!', {
+        .text(this.sys.game.config.width / 2, this.sys.game.config.height / 2 + 275, 'Click ENTER or Tap to play!', {
           fontFamily: '"Press Start 2P"',
           fontSize: '25px',
           fill: '#7B7B7B',
@@ -483,7 +483,7 @@ class winScene extends Phaser.Scene {
 
     this.tweens.add({
       targets: this.add
-        .text(this.sys.game.config.width / 2, this.sys.game.config.height / 2 + 275, 'Click or Tap to play gain!', {
+        .text(this.sys.game.config.width / 2, this.sys.game.config.height / 2 + 275, 'Click ENTER or Tap to play gain!', {
           fontFamily: '"Press Start 2P"',
           fontSize: '25px',
           fill: '#7B7B7B',
@@ -498,7 +498,7 @@ class winScene extends Phaser.Scene {
     });
 
     this.input.once('pointerdown', () => this.scene.start('mainScene'));
-    this.input.keyboard.once('keydown', () => this.scene.start('mainScene'));
+    this.input.keyboard.once('keydown-ENTER', () => this.scene.start('mainScene'));
   }
 }
 
@@ -547,6 +547,7 @@ class gameOverScene extends Phaser.Scene {
             fill: '#7B7B7B',
             stroke: 'black',
             strokeThickness: 10,
+            align: 'center',
           }
         )
         .setOrigin(0.5),
@@ -557,7 +558,7 @@ class gameOverScene extends Phaser.Scene {
     });
 
     this.input.once('pointerdown', () => this.scene.start('mainScene'));
-    this.input.keyboard.once('keydown', () => this.scene.start('mainScene'));
+    this.input.keyboard.once('keydown-ENTER', () => this.scene.start('mainScene'));
   }
 }
 
