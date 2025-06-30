@@ -371,12 +371,14 @@ class mainScene extends Phaser.Scene {
     hero.body.setSize(18, 27);
     hero.body.setOffset(7, 6);
 
-    this.anims.create({
-      key: 'hero-walk',
-      frames: this.anims.generateFrameNumbers('hero', { start: 0, end: 7 }),
-      frameRate: 9,
-      repeat: -1,
-    });
+    if (!this.anims.exists('hero-walk')) {
+      this.anims.create({
+        key: 'hero-walk',
+        frames: this.anims.generateFrameNumbers('hero', { start: 0, end: 7 }),
+        frameRate: 9,
+        repeat: -1,
+      });
+    }
 
     //Hero winScene
 
@@ -398,12 +400,14 @@ class mainScene extends Phaser.Scene {
     // Monsters
     monsters = this.add.group();
 
-    this.anims.create({
-      key: 'monster-walk',
-      frames: this.anims.generateFrameNumbers('monster', { start: 0, end: 3 }),
-      frameRate: 9,
-      repeat: -1,
-    });
+    if (!this.anims.exists('monster-walk')) {
+      this.anims.create({
+        key: 'monster-walk',
+        frames: this.anims.generateFrameNumbers('monster', { start: 0, end: 3 }),
+        frameRate: 9,
+        repeat: -1,
+      });
+    }
 
     // Monsters difficulty (1-2-3)
     let monsterSpeed = 70;
