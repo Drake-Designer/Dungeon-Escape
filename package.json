@@ -1,0 +1,28 @@
+{
+  "name": "dungeon-escape",
+  "version": "1.0.0",
+  "description": "![Code Institute Project](assets/readme-images/code-institute-img.png)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Drake-Designer/Dungeon-Escape.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Drake-Designer/Dungeon-Escape/issues"
+  },
+  "homepage": "https://github.com/Drake-Designer/Dungeon-Escape#readme",
+  "devDependencies": {
+    "@eslint/css": "^0.9.0",
+    "@eslint/js": "^9.30.0",
+    "@eslint/json": "^0.12.0",
+    "@eslint/markdown": "^6.6.0",
+    "eslint": "^9.30.0",
+    "globals": "^16.2.0"
+  }
+}
