@@ -115,7 +115,8 @@ body {
 }
 
 .monster-gif {
-  width: 40px;
+  width: 64px;
+  height: 64px;
 }
 
 /* -----------------------------------> How to play Modal */
@@ -286,6 +287,7 @@ canvas {
   }
   .monster-gif {
     width: 24px;
+    height: 24px;
   }
 }
 

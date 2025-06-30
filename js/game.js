@@ -258,7 +258,7 @@ class startScene extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('main-bg', 'assets/phaser/background-image/main-background.png');
+    this.load.image('main-bg', 'assets/phaser/background-image/main-background.webp');
   }
 
   create() {
@@ -480,7 +480,7 @@ class winScene extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('win-bg', 'assets/phaser/background-image/win-background.png');
+    this.load.image('win-bg', 'assets/phaser/background-image/win-background.webp');
   }
 
   create() {
@@ -530,7 +530,7 @@ class gameOverScene extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('gameover-bg', 'assets/phaser/background-image/gameover-background.png');
+    this.load.image('gameover-bg', 'assets/phaser/background-image/gameover-background.webp');
   }
 
   create() {
