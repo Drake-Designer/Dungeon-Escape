@@ -168,6 +168,14 @@ function heroGetKey(hero, chest) {
   }
 }
 
+/**
+ * Checks if the hero can open the door.
+ * If the hero has the right key, the door opens and a message appears.
+ * If not, a message tells the player they need the key or that the key does not fit.
+ * @param {Object} hero
+ * @param {Object} door
+ */
+
 function heroOpenDoor(hero, door) {
   const scene = hero.scene;
   const doorID = Number(door.getData('doorID'));
@@ -209,6 +217,38 @@ function showMessage(scene, text, x, y) {
   }, 4000);
 }
 
+/**
+ * Creates an invisible exit zones after each door.
+ * When the hero touches one of these zones, the win scene starts.
+ * @param {Phaser.Scene} scene
+ * @param {Array} doorObjects
+ * @param {*} hero
+ */
+function winZone(scene, doorObjects, hero) {
+  scene.exitZones = scene.physics.add.staticGroup();
+
+  doorObjects.forEach((obj) => {
+    const doorID = obj.properties.find((p) => p.name === 'doorID')?.value;
+    let exitX, exitY;
+
+    if (doorID == 1) {
+      exitX = obj.x;
+      exitY = obj.y - 32;
+    } else {
+      exitX = obj.x;
+      exitY = obj.y + 32;
+    }
+
+    const exitZone = scene.exitZones.create(exitX, exitY).setVisible(false);
+
+    exitZone.setData('doorID', doorID);
+  });
+
+  scene.physics.add.overlap(hero, scene.exitZones, () => {
+    scene.scene.start('winScene');
+  });
+}
+
 // -------------------------------------> Start Game Scene
 
 class startScene extends Phaser.Scene {
@@ -217,14 +257,11 @@ class startScene extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('backgroundImage', 'assets/phaser/background-image/background-image.png');
+    this.load.image('main-bg', 'assets/phaser/background-image/main-background.png');
   }
 
   create() {
-    this.add
-      .sprite(0, 0, 'backgroundImage')
-      .setOrigin(0, 0)
-      .setDisplaySize(this.sys.game.config.width, this.sys.game.config.height);
+    this.add.sprite(0, 0, 'main-bg').setOrigin(0, 0).setDisplaySize(this.sys.game.config.width, this.sys.game.config.height);
 
     this.add
       .text(this.sys.game.config.width / 2, this.sys.game.config.height / 2 - 250, 'Dungeon Escape!', {
@@ -240,7 +277,7 @@ class startScene extends Phaser.Scene {
       targets: this.add
         .text(this.sys.game.config.width / 2, this.sys.game.config.height / 2 + 275, 'Click or Tap to play!', {
           fontFamily: '"Press Start 2P"',
-          fontSize: '18px',
+          fontSize: '25px',
           fill: '#7B7B7B',
           stroke: 'black',
           strokeThickness: 10,
@@ -339,6 +376,10 @@ class mainScene extends Phaser.Scene {
       repeat: -1,
     });
 
+    //Hero winScene
+
+    winZone(this, doorObjects, hero);
+
     // Hero movements
     if (isMobileDevice()) {
       heroTouchMovements(this);
@@ -408,6 +449,55 @@ class mainScene extends Phaser.Scene {
   }
 }
 
+// -------------------------------------> Win Scene
+
+class winScene extends Phaser.Scene {
+  constructor() {
+    super('winScene');
+  }
+
+  preload() {
+    // Load the background image for the win screen
+    this.load.image('win-bg', 'assets/phaser/background-image/win-background.png');
+  }
+
+  create() {
+    // Add the background image and make it cover the whole scene
+    this.add
+      .image(this.sys.game.config.width / 2, this.sys.game.config.height / 2, 'win-bg')
+      .setOrigin(0.5)
+      .setDisplaySize(this.sys.game.config.width, this.sys.game.config.height);
+
+    // Main victory text
+    this.add
+      .text(this.sys.game.config.width / 2, this.sys.game.config.height / 2 - 70, 'You have escaped the Dungeon!!', {
+        fontFamily: '"Press Start 2P"',
+        fontSize: '20px',
+        fill: '#ffb600',
+        stroke: '#000',
+        strokeThickness: 6,
+        align: 'center',
+      })
+      .setOrigin(0.5);
+
+    // Message to restart the game
+    this.add
+      .text(this.sys.game.config.width / 2, this.sys.game.config.height / 2 + 30, 'Press a key or tap to play again!', {
+        fontFamily: '"Press Start 2P"',
+        fontSize: '16px',
+        fill: '#fff',
+        stroke: '#222',
+        strokeThickness: 4,
+        align: 'center',
+      })
+      .setOrigin(0.5);
+
+    // Restart the game when the player clicks or presses a key
+    this.input.once('pointerdown', () => this.scene.start('mainScene'));
+    this.input.keyboard.once('keydown', () => this.scene.start('mainScene'));
+  }
+}
+
 // -------------------------------------> Phaser Configuration
 
 const config = {
@@ -416,7 +506,7 @@ const config = {
   height: 608,
   parent: 'game-container',
   physics: { default: 'arcade', arcade: { debug: true } },
-  scene: [startScene, mainScene],
+  scene: [startScene, mainScene, winScene],
 };
 
 new Phaser.Game(config);
