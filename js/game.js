@@ -39,6 +39,12 @@ function heroMove() {
   if (up) vy = -heroSpeed;
   else if (down) vy = heroSpeed;
 
+  if (vx < 0) {
+    hero.setFlipX(true);
+  } else if (vx > 0) {
+    hero.setFlipX(false);
+  }
+
   hero.setVelocity(vx, vy);
 
   if (vx !== 0 || vy !== 0) {
@@ -64,6 +70,12 @@ function heroTouchMovements(scene) {
 
     dx = dx / length;
     dy = dy / length;
+
+    if (dx < 0) {
+      hero.setFlipX(true);
+    } else if (dx > 0) {
+      hero.setFlipX(false);
+    }
 
     hero.setVelocity(dx * heroSpeed, dy * heroSpeed);
     hero.anims.play('hero-walk', true);
@@ -583,7 +595,7 @@ const config = {
   width: 800,
   height: 608,
   parent: 'game-container',
-  physics: { default: 'arcade', arcade: { debug: true } },
+  physics: { default: 'arcade', arcade: { debug: false } },
   scene: [startScene, mainScene, winScene, gameOverScene],
 };
 
