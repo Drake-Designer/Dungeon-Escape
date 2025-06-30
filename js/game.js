@@ -1,3 +1,5 @@
+/* global Phaser */
+
 // -------------------------------------> Global Variables
 
 // Hero and Monster
@@ -162,7 +164,6 @@ function heroGetKey(hero, chest) {
   if (keyID === 1 || keyID === 2) {
     showMessage(scene, 'You have got a key!', chest.x, chest.y);
     heroKeys.push(keyID);
-    console.log('heroKeys:', heroKeys); //TEST
     chest.setData('keyID', 0);
     chest.destroy();
   } else {
@@ -181,8 +182,6 @@ function heroGetKey(hero, chest) {
 function heroOpenDoor(hero, door) {
   const scene = hero.scene;
   const doorID = Number(door.getData('doorID'));
-
-  console.log(doorID); //TEST
 
   if (heroKeys.length === 0) {
     showMessage(scene, 'You need the key!', door.x, door.y);
@@ -462,11 +461,6 @@ class mainScene extends Phaser.Scene {
     });
 
     generateKeys(this.chests);
-
-    //TEST
-    this.chests.getChildren().forEach((chest, i) => {
-      console.log(`chestID ${chest.getData('chestID')}: keyID = ${chest.getData('keyID')}`);
-    });
   }
 
   update() {
