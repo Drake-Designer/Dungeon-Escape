@@ -331,6 +331,7 @@ class mainScene extends Phaser.Scene {
     const wallsLayer = map.createLayer('walls', [lMixed, lWalls, lWallsDoors]);
 
     // Objects: chests
+    heroKeys = [];
     this.chests = this.physics.add.staticGroup();
     const chestObjects = map.getObjectLayer('chests').objects;
 
@@ -470,7 +471,7 @@ class winScene extends Phaser.Scene {
 
     // Main victory text
     this.add
-      .text(this.sys.game.config.width / 2, this.sys.game.config.height / 2 - 70, 'You have escaped the Dungeon!!', {
+      .text(this.sys.game.config.width / 2, this.sys.game.config.height / 2 - 250, 'You have escaped the Dungeon!!', {
         fontFamily: '"Press Start 2P"',
         fontSize: '20px',
         fill: '#ffb600',
@@ -481,16 +482,21 @@ class winScene extends Phaser.Scene {
       .setOrigin(0.5);
 
     // Message to restart the game
-    this.add
-      .text(this.sys.game.config.width / 2, this.sys.game.config.height / 2 + 30, 'Press a key or tap to play again!', {
-        fontFamily: '"Press Start 2P"',
-        fontSize: '16px',
-        fill: '#fff',
-        stroke: '#222',
-        strokeThickness: 4,
-        align: 'center',
-      })
-      .setOrigin(0.5);
+    this.tweens.add({
+      targets: this.add
+        .text(this.sys.game.config.width / 2, this.sys.game.config.height / 2 + 275, 'Click or Tap to play gain!', {
+          fontFamily: '"Press Start 2P"',
+          fontSize: '25px',
+          fill: '#7B7B7B',
+          stroke: 'black',
+          strokeThickness: 10,
+        })
+        .setOrigin(0.5),
+      alpha: 0,
+      yoyo: true,
+      repeat: -1,
+      duration: 500,
+    });
 
     // Restart the game when the player clicks or presses a key
     this.input.once('pointerdown', () => this.scene.start('mainScene'));
