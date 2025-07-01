@@ -7,7 +7,7 @@
 
 /* Google Font: Roboto, Cinzel Decorative, Press Start 2P, Uncial Antiqua, Pirata One */
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Pirata+One&family=Press+Start+2P&family=Roboto:ital,wght@0,100..900;1,100..900&family=Uncial+Antiqua&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Press+Start+2P&family=Roboto+Slab:wght@100..900&display=swap');
 
 /* -----------------------------------> Root Colour Palette + Typography */
 
@@ -20,10 +20,8 @@
   --accent-secondary: #00c89a; /* Secondary Accent */
 
   /* Font families */
-  --font-nav-bar: 'Pirata One', cursive; /* Navbar font */
-  --font-lore: 'Uncial Antiqua', cursive; /* Mase text */
-  --font-secondary: 'Roboto', serif; /* Secondary and Modal text */
-  --font-title: 'Cinzel Decorative', serif; /* Main titles */
+  --font-nav: 'Cinzel Decorative', serif; /* Navbar font */
+  --font-primary: 'Roboto', serif; /* Primary text */
   --font-arcade: 'Press Start 2P', monospace; /* Phaser */
 }
 
@@ -56,7 +54,7 @@ body {
 
 #navbar .navbar-home {
   color: var(--text-primary) !important;
-  font-family: var(--font-nav-bar);
+  font-family: var(--font-nav) !important;
   font-size: 2rem;
   letter-spacing: 2.5px;
   text-decoration: none;
@@ -68,10 +66,9 @@ body {
   transition: color 0.4s, transform 0.4s, text-shadow 0.4s, -webkit-transform 0.4s;
 }
 
-#navbar .navbar-logo:hover {
+#navbar .navbar-home:hover {
   color: var(--accent-primary) !important;
   text-decoration: none;
-  text-shadow: 2px 2px var(--text-primary);
   -webkit-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
@@ -79,7 +76,7 @@ body {
 
 #navbar .nav-link {
   color: var(--text-primary) !important;
-  font-family: var(--font-nav-bar);
+  font-family: var(--font-nav) !important;
   padding: 0.5rem 1rem;
   -webkit-transition: color 0.3s, -webkit-transform 0.3s;
   transition: color 0.3s, -webkit-transform 0.3s;
@@ -109,12 +106,6 @@ body {
   transform: translateY(-2px);
 }
 
-#navbar .nav-link.active::after,
-#navbar .nav-link:hover::after {
-  left: 10%;
-  width: 80%;
-}
-
 /* -----------------------------------> Header */
 
 #header {
@@ -132,218 +123,20 @@ body {
 #header h1 {
   -webkit-text-stroke: 1px var(--accent-primary);
   color: var(--text-primary);
-  font-family: var(--font-title);
+  font-family: var(--font-primary) !important;
   text-shadow: 2px 2px var(--bg-panel);
+  font-size: clamp(1.5rem, 8vw, 4rem) !important;
+}
+
+.monster-gif {
+  width: clamp(20px, 7vw, 64px) !important;
+  height: clamp(20px, 7vw, 64px) !important;
 }
 
 #header p {
   color: var(--text-primary);
   font-family: var(--font-secondary);
-}
-
-.monster-gif {
-  width: 64px;
-  height: 64px;
-}
-
-/* -----------------------------------> How to play Modal */
-
-#howToPlayModal .modal-header {
-  background-color: var(--bg-panel);
-  border-bottom: 2px solid var(--accent-primary);
-  color: var(--accent-primary) !important;
-  display: inline-block;
-}
-
-#howToPlayModal .modal-header h2 {
-  font-family: var(--font-arcade);
-  text-align: center;
-}
-
-#howToPlayModal .modal-footer {
-  background-color: var(--bg-panel);
-  border-top: 2px solid var(--accent-primary);
-}
-
-#howToPlayModal .modal-body .how-to-play-list p {
-  color: var(--text-secondary);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  font-family: var(--font-secondary);
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  letter-spacing: 0.5px;
-  margin-bottom: 1.5rem;
-}
-
-#howToPlayModal .modal-body .how-to-play-list p i {
-  color: var(--accent-primary);
-  font-size: 1.5rem;
-  margin-right: 0.75rem;
-  min-width: 1.5rem;
-  text-align: center;
-}
-
-#howToPlayModal .modal-footer .btn-secondary {
-  background-color: var(--bg-main);
-}
-
-#howToPlayModal .modal-header .btn-close {
-  display: none !important;
-}
-
-/* -----------------------------------> Game container */
-
-.main-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-flex: 1;
-  -ms-flex: 1 0 auto;
-  flex: 1 0 auto;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
-#game-border {
-  background: var(--bg-main);
-  border: 2px solid red;
-  border-radius: 4px;
-  max-width: 1200px;
-  width: 100%;
-}
-
-#game-container {
-  height: 100%;
-  width: 100%;
-}
-
-canvas {
-  border-radius: 2px;
-  height: 100% !important;
-  width: 100% !important;
-}
-
-/* -----------------------------------> Global styles */
-
-html,
-body {
-  height: 100%;
-}
-
-body {
-  background: var(--bg-main);
-  color: var(--text-primary);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  margin-top: 5rem;
-}
-
-/* -----------------------------------> Navbar */
-#navbar {
-  background: var(--bg-panel);
-  border-bottom: 2px solid var(--accent-primary);
-  font-size: 1.5rem;
-}
-
-#navbar .navbar-home {
-  color: var(--text-primary) !important;
-  font-family: var(--font-nav-bar);
-  font-size: 2rem;
-  letter-spacing: 2.5px;
-  text-decoration: none;
-  text-shadow: 1px 1px var(--accent-primary);
-  -webkit-transition: color 0.4s, text-shadow 0.4s, -webkit-transform 0.4s;
-  transition: color 0.4s, text-shadow 0.4s, -webkit-transform 0.4s;
-  -o-transition: color 0.4s, transform 0.4s, text-shadow 0.4s;
-  transition: color 0.4s, transform 0.4s, text-shadow 0.4s;
-  transition: color 0.4s, transform 0.4s, text-shadow 0.4s, -webkit-transform 0.4s;
-}
-
-#navbar .navbar-logo:hover {
-  color: var(--accent-primary) !important;
-  text-decoration: none;
-  text-shadow: 2px 2px var(--text-primary);
-  -webkit-transform: scale(1.05);
-  -ms-transform: scale(1.05);
-  transform: scale(1.05);
-}
-
-#navbar .nav-link {
-  color: var(--text-primary) !important;
-  font-family: var(--font-nav-bar);
-  padding: 0.5rem 1rem;
-  -webkit-transition: color 0.3s, -webkit-transform 0.3s;
-  transition: color 0.3s, -webkit-transform 0.3s;
-  -o-transition: color 0.3s, transform 0.3s;
-  transition: color 0.3s, transform 0.3s;
-  transition: color 0.3s, transform 0.3s, -webkit-transform 0.3s;
-}
-
-#navbar .nav-link::after {
-  background: var(--accent-primary);
-  bottom: 4px;
-  content: '';
-  height: 2px;
-  left: 50%;
-  position: absolute;
-  -webkit-transition: width 0.3s, left 0.3s;
-  -o-transition: width 0.3s, left 0.3s;
-  transition: width 0.3s, left 0.3s;
-  width: 0;
-}
-
-#navbar .nav-link.active,
-#navbar .nav-link:hover {
-  color: var(--accent-primary) !important;
-  -webkit-transform: translateY(-2px);
-  -ms-transform: translateY(-2px);
-  transform: translateY(-2px);
-}
-
-#navbar .nav-link.active::after,
-#navbar .nav-link:hover::after {
-  left: 10%;
-  width: 80%;
-}
-
-/* -----------------------------------> Header */
-
-#header {
-  border-radius: 8px;
-  padding: 1.5rem 0;
-}
-
-.header-box {
-  background: var(--bg-panel);
-  border-radius: 8px;
-  display: inline-block;
-  padding: 1rem 2rem;
-}
-
-#header h1 {
-  -webkit-text-stroke: 1px var(--accent-primary);
-  color: var(--text-primary);
-  font-family: var(--font-title);
-  text-shadow: 2px 2px var(--bg-panel);
-}
-
-#header p {
-  color: var(--text-primary);
-  font-family: var(--font-secondary);
-}
-
-.monster-gif {
-  height: 64px;
-  width: 64px;
+  font-size: clamp(0.8rem, 2vw, 3.5rem);
 }
 
 /* -----------------------------------> How to play Modal */
@@ -544,22 +337,6 @@ canvas {
 @media (max-width: 992px) {
   .navbar-collapse .nav-link::after {
     display: none !important;
-  }
-}
-
-/* Fix Header */
-@media (max-width: 600px) {
-  #header h1 {
-    font-size: 1.4rem;
-    line-height: 1.2;
-    padding: 0.5rem 0;
-  }
-  .header-box {
-    padding: 0.5rem 0.7rem;
-  }
-  .monster-gif {
-    height: 24px;
-    width: 24px;
   }
 }
 
