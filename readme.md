@@ -488,11 +488,125 @@ Below are screenshots showing Dungeon Escape! running on each device:
 
 #### Samsung Phone
 
-![Dungeon Escape on Samsung Phone](assets/readme-images/device-samsung.png)
+![Dungeon Escape on Samsung Phone](assets/readme-images/samsung-test.png)
 
 All devices displayed the game correctly and the main features (navigation, controls, and modals) worked as intended.
 
 ---
+
+## Deployment
+
+The **Dungeon Escape!** game is fully deployed and publicly accessible via **GitHub**.  
+This allows anyone to play the game directly from their browser, without the need to download or install anything.
+
+### Deployment Steps
+
+1. **Project Setup on GitHub**
+
+   - The full project (HTML, CSS, JavaScript, Phaser assets, and images) was pushed to a public [GitHub repository](https://github.com/Drake-Designer/Dungeon-Escape).
+
+2. **Deploying to GitHub Pages**
+
+   - In the repository, go to **Settings** > **Pages**.
+   - Under the **Source** section, select the **`main` branch** (root).
+   - Click **Save** to activate GitHub Pages for the project.
+   - GitHub automatically generates a public URL for the website.
+
+3. **Deployment Confirmation**
+
+   - After a few seconds, a banner appears confirming that the site was successfully deployed.
+   - The site is now available at the following address:
+
+     👉 **[Play Dungeon Escape! Live](https://drake-designer.github.io/Dungeon-Escape/)**
+
+4. **Testing the Live Version**
+
+   - After deployment, I thoroughly tested the live site across multiple devices and browsers to ensure everything works as intended (see [Device Testing](#device-testing)).
+
+5. **Sharing the Game**
+   - The public URL can be shared with friends, colleagues, and reviewers.
+   - The game is accessible from both desktop and mobile devices, no installation required.
+
+### Useful Links
+
+- **Live Site:**  
+  [https://drake-designer.github.io/Dungeon-Escape/](https://drake-designer.github.io/Dungeon-Escape/)
+- **GitHub Repository:**  
+  [https://github.com/Drake-Designer/Dungeon-Escape](https://github.com/Drake-Designer/Dungeon-Escape)
+
+---
+
+## Credits
+
+I want to thank all the resources, tutorials, and people that helped me build **Dungeon Escape!**
+
+This project was a big learning experience, and I could not have done it alone.
+
+### Phaser Projects
+
+Before starting this project, I made two small Phaser games to learn the basics.  
+A lot of code and ideas in Dungeon Escape! come from these mini-projects:
+
+- [Phaser First Game Tutorial](https://github.com/Drake-Designer/Phaser-First-Game-Tutorial)  
+  _My first game with Phaser, where I learned about scenes, movement, and collisions._
+
+- [Road Crossing Game](https://github.com/Drake-Designer/Road-Crossing-Game)  
+  _Here I learned more about character movement, obstacles, and how to structure a small game._
+
+These projects made it much easier for me to work on Dungeon Escape!
+
+### Online Courses
+
+- [Phaser Mini-Degree (Zenva Academy)](https://academy.zenva.com/product/html5-game-phaser-mini-degree/)  
+  _This course helped me understand how Phaser works. I followed the main modules and learned about asset loading, game scenes, and more._
+
+### Map Tutorials with Tiled
+
+I learned how to create my own map with these YouTube tutorials:
+
+- [How to Create a Tile Map with Tiled and Phaser 3](https://www.youtube.com/watch?v=IHmF_bRpOAE)
+- [Phaser 3 and Tiled - Full Setup Guide (Playlist)](https://www.youtube.com/watch?v=ZwaomOYGuYo&list=PLyMh3RngtKvNhNFwZyfkQj4E35FGv3HBg&index=1)
+
+These videos showed me how to use Tiled with Phaser, add objects, and set up collisions.
+
+### Phaser Documentation & Community
+
+- [Phaser 3 Documentation](https://docs.phaser.io/phaser/getting-started/what-is-phaser)  
+  _I used this for all Phaser features, examples, and syntax._
+
+- [Phaser Examples](https://phaser.io/examples)  
+  _Many small code samples were helpful for solving problems._
+
+- [Phaser Forum & Discord](https://phaser.discourse.group/)  
+  _Special thanks to users who answered my questions about alignment and scaling!_
+
+### Free Tools and Assets
+
+- [Tiled Map Editor](https://www.mapeditor.org/)
+- [Piskel App](https://www.piskelapp.com/)
+- [Photopea](https://www.photopea.com/)
+- [OpenGameArt.org](https://opengameart.org/)
+- [Itch.io Free Game Assets](https://itch.io/game-assets/free)
+- [CraftPix.net Freebies](https://craftpix.net/freebies/)
+- [Google Fonts](https://fonts.google.com/) – For all fonts
+
+Some sprites, icons, and tilesets in Dungeon Escape! are from these sites, or inspired by assets found there.
+
+### Testing and Validation
+
+- [W3C Validators](https://validator.w3.org/) – For HTML and CSS
+- [ESLint](https://eslint.org/) – For JavaScript code
+- [WAVE](https://wave.webaim.org/) – For accessibility
+- [Google Lighthouse](https://developers.google.com/web/tools/lighthouse) – For performance
+
+### Playtesters
+
+Thank you to my friends, colleagues, and family who tested Dungeon Escape! on different devices and gave me feedback. Your help made the game much better!
+
+---
+
+If you use this project or part of it, please leave these credits in your work.  
+And thanks to everyone online who shares their knowledge – it really helps!
 
 ## Behind the Scenes!
 
