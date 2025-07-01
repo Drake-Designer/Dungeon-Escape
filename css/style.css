@@ -21,7 +21,7 @@
 
   /* Font families */
   --font-nav: 'Cinzel Decorative', serif; /* Navbar font */
-  --font-primary: 'Roboto', serif; /* Primary text */
+  --font-primary: 'Roboto', serif; /* Primary/main text */
   --font-arcade: 'Press Start 2P', monospace; /* Phaser */
 }
 
@@ -135,7 +135,7 @@ body {
 
 #header p {
   color: var(--text-primary);
-  font-family: var(--font-secondary);
+  font-family: var(--font-primary);
   font-size: clamp(0.8rem, 2vw, 3.5rem);
 }
 
@@ -163,7 +163,7 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  font-family: var(--font-secondary);
+  font-family: var(--font-primary);
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
@@ -232,7 +232,7 @@ canvas {
 
 .difficulty-title {
   color: var(--accent-primary);
-  font-family: var(--font-title);
+  font-family: var(--font-arcade);
   font-size: 1.5rem;
   letter-spacing: 2px;
 }
@@ -283,7 +283,7 @@ canvas {
   background: var(--bg-panel);
   border-top: 3px solid var(--accent-primary);
   color: var(--text-primary);
-  font-family: var(--font-secondary);
+  font-family: var(--font-primary);
   font-size: 1rem;
   padding: 1rem;
 }
@@ -301,7 +301,7 @@ canvas {
 }
 
 #footer-version {
-  font-family: var(--font-title);
+  font-family: var(--font-nav);
   font-size: 1.2rem;
 }
 

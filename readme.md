@@ -1,7 +1,7 @@
 ![Code Institute Project](assets/readme-images/code-institute-img.png)
 
 <h1 align="center">
-  <img src="" width="28" />
+  <img src="assets/images/favicon/favicon-96x96.png" width="28" alt="Monster GIF" />
   Milestone Project 2: Dungeon Escape!
 </h1>
 
@@ -104,7 +104,7 @@ My github links projects:
 
 And… even if I’ve already forgotten more than half of what I learned 😅, I still managed to get the mini-Phaser diploma! (But I definitely need to go back to the course, because there’s still a lot I need to learn properly and I didn’t have time to focus as much as I wanted!)
 
-![Wireframes](assets/readme-images/zenva-certificate.png)
+![Zenva Certificate](assets/readme-images/zenva-certificate.png)
 
 This whole experience really pushed me out of my comfort zone, but it made me even more excited to keep learning and building new things!
 
@@ -123,7 +123,7 @@ This whole experience really pushed me out of my comfort zone, but it made me ev
 
 ### Structure
 
-- When the game loads, I see a big title of the game and a message: “Click or Tap to play!”
+- When the game loads, I see a big title of the game and a message: “Click ENTER or Tap to play!”
 - The game fills the center of the screen, with a nice dark background.
 - The controls are simple:
   - Arrow keys or WASD to move (desktop)
@@ -177,25 +177,19 @@ This dark palette makes the gold and teal really pop, just like in retro games.
 
 The game uses a mix of modern and retro fonts to create a fun, arcade-style feeling. Different font families are used for different parts of the site and game. All fonts are loaded from [Google Fonts](https://fonts.google.com/).
 
-| Where it's used            | Font family       | What it's for                       |
-| -------------------------- | ----------------- | ----------------------------------- |
-| Navigation bar             | Pirata One        | Used for the main menu / navbar     |
-| Game lore and special text | Uncial Antiqua    | For story sections and special text |
-| Main titles                | Cinzel Decorative | For big titles and headers          |
-| Arcade/game text           | Press Start 2P    | For retro arcade text in the game   |
-| General/secondary text     | Roboto            | Used for body text and modals       |
+| Where it's used  | Font family       | What it's for                     |
+| ---------------- | ----------------- | --------------------------------- |
+| Navigation bar   | Cinzel Decorative | Navbar                            |
+| Main titles      | Roboto            | Primary headings and big text     |
+| Arcade/game text | Press Start 2P    | For retro arcade text in the game |
 
 ```css /*
-/* Font families */
+/* Font families in CSS */
 
---font-nav-bar: 'Pirata One', cursive; /* Navbar font */
---font-lore: 'Uncial Antiqua', cursive; /* Mase text */
---font-secondary: 'Roboto', serif; /* Secondary and Modal text */
---font-title: 'Cinzel Decorative', serif; /* Main titles */
+--font-nav: 'Cinzel Decorative', serif; /* Navbar font */
+--font-primary: 'Roboto', serif; /* Primary/main text */
 --font-arcade: 'Press Start 2P', monospace; /* Phaser */
 ```
-
-Fonts are loaded from Google Fonts for that authentic retro feel.
 
 ---
 
@@ -214,6 +208,7 @@ Fonts are loaded from Google Fonts for that authentic retro feel.
 - [Piskel](https://www.piskelapp.com) – Pixel art sprite editor
 - [Photopea](https://www.photopea.com) – Online graphics editor
 - [RealFaviconGenerator](https://realfavicongenerator.net) – Favicon generator
+- [Tinify](https://tinify.com/) – Online image optimizer
 
 ### Art & Asset Resources
 
@@ -442,3 +437,13 @@ function monsterRandomDirection(monster) {
 ```
 
 That was a nice surprise for me, and it made me realize that mistakes can be fantastic sometimes! 😄
+
+### Note on Mobile Controls
+
+I am aware that the hero’s movement is **not as smooth on mobile devices** compared to desktop controls. I considered implementing a virtual joystick for touch controls, which is a common solution for making character movement more fluid on mobile.
+
+However, after some research and testing, I found that adding a joystick was a bit too complex for this project’s scope, and it would also take up too much space in the game window, especially on smaller screens. I decided to keep the **tap-to-move** controls for mobile, even though they are not perfectly smooth, because they keep the interface clean and the gameplay experience simple.
+
+If I work on a future version, I’ll definitely explore better mobile control solutions!
+
+---
