@@ -125,18 +125,18 @@ body {
   color: var(--text-primary);
   font-family: var(--font-primary) !important;
   text-shadow: 2px 2px var(--bg-panel);
-  font-size: clamp(1.5rem, 8vw, 4rem) !important;
+  font-size: clamp(1.5rem, 5vw, 2.5rem) !important;
 }
 
 .monster-gif {
-  width: clamp(20px, 7vw, 64px) !important;
-  height: clamp(20px, 7vw, 64px) !important;
+  width: clamp(20px, 7vw, 60px) !important;
+  height: clamp(20px, 7vw, 60px) !important;
 }
 
 #header p {
   color: var(--text-primary);
   font-family: var(--font-primary);
-  font-size: clamp(0.8rem, 2vw, 3.5rem);
+  font-size: clamp(0.9rem, 2vw, 1.5rem);
 }
 
 /* -----------------------------------> How to play Modal */

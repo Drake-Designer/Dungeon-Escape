@@ -458,7 +458,8 @@ Despite these optimizations, mobile scores can still vary depending on the testi
 
 ### Device Testing
 
-To ensure a great user experience across different platforms, **I tested Dungeon Escape! personally and asked friends and colleagues to test it on multiple devices**.  
+To ensure a great user experience across different platforms, **I tested Dungeon Escape! personally and asked friends and colleagues to test it on multiple devices**.
+
 The game runs well on all of the following devices, with no major issues reported:
 
 - **iMac**
