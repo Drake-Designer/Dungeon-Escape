@@ -472,19 +472,19 @@ Below are screenshots showing Dungeon Escape! running on each device:
 
 #### iMac
 
-![Dungeon Escape on iMac](assets/readme-images/device-imac.png)
+![Dungeon Escape on iMac](assets/readme-images/iMac-test.png)
 
 #### Desktop PC
 
-![Dungeon Escape on Desktop PC](assets/readme-images/device-desktop.png)
+![Dungeon Escape on Desktop PC](assets/readme-images/desktop-test.png)
 
 #### iPhone
 
-![Dungeon Escape on iPhone](assets/readme-images/device-iphone.png)
+![Dungeon Escape on iPhone](assets/readme-images/iPhone-test.png)
 
 #### iPad
 
-![Dungeon Escape on iPad](assets/readme-images/device-ipad.png)
+![Dungeon Escape on iPad](assets/readme-images/iPad-test.png)
 
 #### Samsung Phone
 
