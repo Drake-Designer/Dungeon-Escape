@@ -364,6 +364,42 @@ doorObjects.forEach((obj) => {
 
 ![Tileset Map Bug](assets/readme-images/bugs/phaser-map-fix.png)
 
+---
+
+## Validation
+
+### Lighthouse Performance Results
+
+I regularly tested Dungeon Escape! with **Google Lighthouse** (in **Incognito Mode** on Google Chrome) to monitor performance, accessibility, and best practices during development.
+
+- On **desktop**, the game consistently scores very high on all metrics.
+- On **mobile**, the scores are generally good, but can fluctuate more often due to differences in device hardware, network conditions, and how browsers emulate mobile performance.
+
+I have done my best to optimize the site for both desktop and mobile by:
+
+- Minimizing and optimizing all images and assets.
+- Using only one main CSS file, loaded at the top.
+- Deferring all JavaScript files to prevent render blocking.
+- Using optimized images.
+- Adding explicit width and height attributes to key images to minimize layout shifts.
+- Loading only essential fonts from Google Fonts with `display=swap` for better perceived loading times.
+
+Despite these optimizations, mobile scores can still vary depending on the testing environment, device, and emulation.
+
+#### Example Results
+
+**Desktop (Lighthouse):**
+
+![Lighthouse Desktop Report](assets/readme-images/lighthouse-desktop.png)
+
+**Mobile (Lighthouse):**
+
+![Lighthouse Mobile Report](assets/readme-images/lighthouse-mobile.png)
+
+---
+
+> If you are testing the game yourself, you may see slightly different scores depending on your device or network, but overall, the game remains performant and responsive!
+
 ## Behind the Scenes!
 
 ### How the Monster Movement Evolved
