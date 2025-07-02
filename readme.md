@@ -219,7 +219,14 @@ The game uses a mix of modern and retro fonts to create a fun, arcade-style feel
 
 ## Testing & Bug Fixes
 
-For full details on all testing carried out, including manual testing, automated tests and device/browser checks, please see the [TESTING.md](/TESTING.md) file.
+Full details on all testing carried out—including:
+
+- Validations
+- Performance
+- Device/browser checks
+- Game manual testing
+
+> can be found in the **[TESTING](/TESTING.md)** file.
 
 ### 🐞 BUG 1: Game Container & Phaser Canvas Sizing
 
