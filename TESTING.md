@@ -4,9 +4,9 @@
 
 I used the official [W3C Markup Validation Service](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdrake-designer.github.io%2FDungeon-Escape%2Findex.html) to validate all HTML files.
 
-| File       | Validator                                                                                                                               | Screenshot                                                                                | Result | Notes                                                                                                                                                                                                     |
-| ---------- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| index.html | [HTML Validator Dungeon Escape!](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdrake-designer.github.io%2FDungeon-Escape%2Findex.html) | ![HTML Validation Screenshot](assets/documentation/validation-images/hmtl-validation.png) | Pass   | No errors or warnings found, except: “Trailing slash on void elements has no effect and interacts badly with unquoted attribute values.” This is **not an error** and is due to Prettier auto-formatting. |
+| File       | Validator                                                                                                                               | Screenshot                                                                         | Result | Notes                                                                                                                                                                                                     |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| index.html | [HTML Validator Dungeon Escape!](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdrake-designer.github.io%2FDungeon-Escape%2Findex.html) | ![HTML Validation Screenshot](documentation/validation-images/hmtl-validation.png) | Pass   | No errors or warnings found, except: “Trailing slash on void elements has no effect and interacts badly with unquoted attribute values.” This is **not an error** and is due to Prettier auto-formatting. |
 
 ---
 
@@ -14,9 +14,9 @@ I used the official [W3C Markup Validation Service](https://validator.w3.org/nu/
 
 I used the official [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fdrake-designer.github.io%2FDungeon-Escape%2Findex.html&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=it) to validate all CSS files.
 
-| File      | Validator                                                                                                                                               | Screenshot                                                                              | Result | Notes                        |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | ------ | ---------------------------- |
-| style.css | [CSS Validator Dungeon Escape!](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fdrake-designer.github.io%2FDungeon-Escape%2Findex.html) | ![CSS Validation Screenshot](assets/documentation/validation-images/css-validation.png) | Pass   | No errors or warnings found. |
+| File      | Validator                                                                                                                                               | Screenshot                                                                       | Result | Notes                        |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | ------ | ---------------------------- |
+| style.css | [CSS Validator Dungeon Escape!](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fdrake-designer.github.io%2FDungeon-Escape%2Findex.html) | ![CSS Validation Screenshot](documentation/validation-images/css-validation.png) | Pass   | No errors or warnings found. |
 
 ---
 
@@ -33,9 +33,9 @@ ESLint was initialized with these options:
 - **TypeScript:** No
 - **Where does your code run?** Browser
 
-| File    | Validator | Screenshot                                                                   | Result | Notes                                    |
-| ------- | --------- | ---------------------------------------------------------------------------- | ------ | ---------------------------------------- |
-| game.js | ESLint    | ![ESLint Screenshot](assets/documentation/validation-images/eslint-test.png) | Pass   | No significant errors or warnings found. |
+| File    | Validator | Screenshot                                                            | Result | Notes                                    |
+| ------- | --------- | --------------------------------------------------------------------- | ------ | ---------------------------------------- |
+| game.js | ESLint    | ![ESLint Screenshot](documentation/validation-images/eslint-test.png) | Pass   | No significant errors or warnings found. |
 
 ---
 
@@ -43,10 +43,10 @@ ESLint was initialized with these options:
 
 All main JavaScript files were also checked using [JSHint](https://jshint.com/) to ensure code quality and identify potential issues.
 
-| File      | Screenshot                                                                       | Warnings/Notes                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| --------- | -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| game.js   | ![JSHint Results](assets/documentation/validation-images/jshint-validator.png)   | - 45 functions in this file.<br>- Largest function has 56 statements.<br>- Most complex function has cyclomatic complexity of 17.<br>- **One warning:** Do not use 'new' for side effects.<br><br>_This warning does not impact game behavior._                                                                                                                                                                                                                                                                     |
-| script.js | ![JSHint Results](assets/documentation/validation-images/jshint-validator-2.png) | - 2 functions in this file.<br>- Largest function has 3 statements.<br>- Most complex function has cyclomatic complexity of 2.<br>- **One warning:** Functions declared within loops referencing an outer scoped variable may lead to confusing semantics.<br><br>_This warning is due to a function declared within a for loop that references the loop variable. However, ES6 `let` and arrow functions are used, so there is no risk of scope-related bugs. This warning can be safely ignored in this context._ |
+| File      | Screenshot                                                                | Warnings/Notes                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| --------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| game.js   | ![JSHint Results](documentation/validation-images/jshint-validator.png)   | - 45 functions in this file.<br>- Largest function has 56 statements.<br>- Most complex function has cyclomatic complexity of 17.<br>- **One warning:** Do not use 'new' for side effects.<br><br>_This warning does not impact game behavior._                                                                                                                                                                                                                                                                     |
+| script.js | ![JSHint Results](documentation/validation-images/jshint-validator-2.png) | - 2 functions in this file.<br>- Largest function has 3 statements.<br>- Most complex function has cyclomatic complexity of 2.<br>- **One warning:** Functions declared within loops referencing an outer scoped variable may lead to confusing semantics.<br><br>_This warning is due to a function declared within a for loop that references the loop variable. However, ES6 `let` and arrow functions are used, so there is no risk of scope-related bugs. This warning can be safely ignored in this context._ |
 
 ---
 
@@ -54,9 +54,9 @@ All main JavaScript files were also checked using [JSHint](https://jshint.com/) 
 
 I checked accessibility using the [WAVE Web Accessibility Evaluation Tool](https://wave.webaim.org).
 
-| Page | Validator                                                                                       | Screenshot                                                                     | Result | Notes                                                                                              |
-| ---- | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | ------ | -------------------------------------------------------------------------------------------------- |
-| Home | [WAVE Report](https://wave.webaim.org/report#/https://drake-designer.github.io/Dungeon-Escape/) | ![WAVE Screenshot](assets/documentation/validation-images/wave-report.png.png) | Pass   | 0 accessibility errors or contrast issues. Minor alerts (structural/ARIA) not affecting usability. |
+| Page | Validator                                                                                       | Screenshot                                                              | Result | Notes                                                                                              |
+| ---- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- | ------ | -------------------------------------------------------------------------------------------------- |
+| Home | [WAVE Report](https://wave.webaim.org/report#/https://drake-designer.github.io/Dungeon-Escape/) | ![WAVE Screenshot](documentation/validation-images/wave-report.png.png) | Pass   | 0 accessibility errors or contrast issues. Minor alerts (structural/ARIA) not affecting usability. |
 
 ---
 
@@ -64,10 +64,10 @@ I checked accessibility using the [WAVE Web Accessibility Evaluation Tool](https
 
 I regularly tested Dungeon Escape! using **Google Lighthouse** (in Incognito mode on Chrome) to check performance, accessibility, and best practices.
 
-| Page | Device  | Screenshot                                                                           | Result     | Notes                                                 |
-| ---- | ------- | ------------------------------------------------------------------------------------ | ---------- | ----------------------------------------------------- |
-| Home | Desktop | ![Lighthouse Desktop](assets/documentation/validation-images/lighthouse-desktop.png) | High Score | Minor warnings only                                   |
-| Home | Mobile  | ![Lighthouse Mobile](assets/documentation/validation-images/lighthouse-mobile.png)   | Good       | Minor performance variation based on device/emulation |
+| Page | Device  | Screenshot                                                                    | Result     | Notes                                                 |
+| ---- | ------- | ----------------------------------------------------------------------------- | ---------- | ----------------------------------------------------- |
+| Home | Desktop | ![Lighthouse Desktop](documentation/validation-images/lighthouse-desktop.png) | High Score | Minor warnings only                                   |
+| Home | Mobile  | ![Lighthouse Mobile](documentation/validation-images/lighthouse-mobile.png)   | Good       | Minor performance variation based on device/emulation |
 
 **Optimization Steps Taken:**
 
@@ -85,13 +85,13 @@ I regularly tested Dungeon Escape! using **Google Lighthouse** (in Incognito mod
 
 I tested Dungeon Escape! personally and with help from friends/colleagues on multiple devices and browsers to ensure a great user experience.
 
-| Device        | Screenshot                                                                      | Notes                            |
-| ------------- | ------------------------------------------------------------------------------- | -------------------------------- |
-| iMac          | ![iMac Screenshot](assets/documentation/device-test-images/iMac-test.png)       | All features working as expected |
-| Desktop PC    | ![Desktop Screenshot](assets/documentation/device-test-images/desktop-test.png) | All features working as expected |
-| iPhone        | ![iPhone Screenshot](assets/documentation/device-test-images/iPhone-test.png)   | All features working as expected |
-| iPad          | ![iPad Screenshot](assets/documentation/device-test-images/iPad-test.png)       | All features working as expected |
-| Samsung Phone | ![Samsung Screenshot](assets/documentation/device-test-images/samsung-test.png) | All features working as expected |
+| Device        | Screenshot                                                               | Notes                            |
+| ------------- | ------------------------------------------------------------------------ | -------------------------------- |
+| iMac          | ![iMac Screenshot](documentation/device-test-images/iMac-test.png)       | All features working as expected |
+| Desktop PC    | ![Desktop Screenshot](documentation/device-test-images/desktop-test.png) | All features working as expected |
+| iPhone        | ![iPhone Screenshot](documentation/device-test-images/iPhone-test.png)   | All features working as expected |
+| iPad          | ![iPad Screenshot](documentation/device-test-images/iPad-test.png)       | All features working as expected |
+| Samsung Phone | ![Samsung Screenshot](documentation/device-test-images/samsung-test.png) | All features working as expected |
 
 All devices and browsers displayed the game correctly, with navigation, controls, and modals functioning as intended.
 

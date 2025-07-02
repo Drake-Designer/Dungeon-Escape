@@ -1,4 +1,4 @@
-![Code Institute Project](assets/documentation/code-institute-img.png)
+![Code Institute Project](documentation/code-institute-img.png)
 
 <h1 align="center">
   <img src="assets/images/favicon/favicon-96x96.png" width="28" alt="Monster GIF" />
@@ -16,7 +16,7 @@
 
 ## 👉 [Play Dungeon Escape](https://drake-designer.github.io/Dungeon-Escape/)
 
-![Game Intro Screenshot](assets/documentation/am-i-responsive.png)
+![Game Intro Screenshot](documentation/am-i-responsive.png)
 
 ---
 
@@ -104,7 +104,7 @@ My github links projects:
 
 And… even if I’ve already forgotten more than half of what I learned 😅, I still managed to get the mini-Phaser diploma! (But I definitely need to go back to the course, because there’s still a lot I need to learn properly and I didn’t have time to focus as much as I wanted!)
 
-![Zenva Certificate](assets/documentation/zenva-certificate.png)
+![Zenva Certificate](documentation/zenva-certificate.png)
 
 This whole experience really pushed me out of my comfort zone, but it made me even more excited to keep learning and building new things!
 
@@ -154,7 +154,7 @@ Each version shows:
 
 These wireframes helped me make sure the game looks clean and easy to use on all devices.
 
-![Wireframes](assets/documentation/wireframes.png)
+![Wireframes](documentation/wireframes.png)
 
 #### Colour Palette
 
@@ -171,7 +171,7 @@ The game uses a simple palette to make everything feel like an old-school dungeo
 
 This dark palette makes the gold and teal really pop, just like in retro games.
 
-![Color Palette](assets/documentation/color-palette.png)
+![Color Palette](documentation/color-palette.png)
 
 #### Typography
 
@@ -256,11 +256,11 @@ But the canvas still didn’t fit right in all browsers and on all screens.
 
 After lots of searching, I asked for help on Discord (see screenshots below!).
 
-![Canvas Bug](assets/documentation/bugs-images/canvas-bug-discord.png)
+![Canvas Bug](documentation/bugs-images/canvas-bug-discord.png)
 
 A kind user suggested this simple strategy:
 
-![Canvas Bug 2](assets/documentation/bugs-images/canvas-bug-discord-2.png)
+![Canvas Bug 2](documentation/bugs-images/canvas-bug-discord-2.png)
 
 In the end, I decided to wrap the canvas in an extra `<div id="game-border">` to have better control over the border and centering with another CSS workaround:
 
@@ -322,11 +322,11 @@ No matter what I tried, changing the code, modifying the origin and offsets prop
 
 After a lot of trial and error, I decided to ask for help on the Tiled forum and also on Discord (see screenshots below).
 
-![Tileset Bug Pic Discord](assets/documentation/bugs-images/alignment-bug-discord.png)
+![Tileset Bug Pic Discord](documentation/bugs-images/alignment-bug-discord.png)
 
 A very helpful user on the forum explained that the problem could be fixed by changing the **Object Alignment** property of my tileset in Tiled. I had never noticed that option before!
 
-![Tiled Forum Pic](assets/documentation/bugs-images/alignment-bug-tiled.png)
+![Tiled Forum Pic](documentation/bugs-images/alignment-bug-tiled.png)
 
 ---
 
@@ -347,7 +347,7 @@ doorObjects.forEach((obj) => {
 });
 ```
 
-![Tileset Map Bug](assets/documentation/bugs-images/phaser-map-bug.png)
+![Tileset Map Bug](documentation/bugs-images/phaser-map-bug.png)
 
 #### After the fix:
 
@@ -362,7 +362,7 @@ doorObjects.forEach((obj) => {
 });
 ```
 
-![Tileset Map Fix](assets/documentation/bugs-images/phaser-map-fix.png)
+![Tileset Map Fix](documentation/bugs-images/phaser-map-fix.png)
 
 ## Behind the Scenes!
 
