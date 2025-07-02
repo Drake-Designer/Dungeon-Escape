@@ -569,44 +569,29 @@ I learned how to create my own map with these YouTube tutorials:
 
 These videos showed me how to use Tiled with Phaser, add objects, and set up collisions.
 
+---
+
+### Special Thanks
+
+I want to give a special thank you to some people who helped me by testing Dungeon Escape! on different devices, giving feedback, and sending screenshots.
+
+Big thanks to:
+
+- [violaberg](https://github.com/violaberg) – _tested on iPhone/iPad and gave helpful feedback._
+
+- [Rebekah-codes](https://github.com/Rebekah-codes) – _tested on Samsung and sent screenshots._
+
 ### Phaser Documentation & Community
 
-- [Phaser 3 Documentation](https://docs.phaser.io/phaser/getting-started/what-is-phaser)  
-  _I used this for all Phaser features, examples, and syntax._
+- [Phaser 3 Documentation](https://docs.phaser.io/phaser/getting-started/what-is-phaser)
 
-- [Phaser Examples](https://phaser.io/examples)  
-  _Many small code samples were helpful for solving problems._
+- [Phaser Examples](https://phaser.io/examples)
 
-- [Phaser Forum & Discord](https://phaser.discourse.group/)  
-  _Special thanks to users who answered my questions about alignment and scaling!_
-
-### Free Tools and Assets
-
-- [Tiled Map Editor](https://www.mapeditor.org/)
-- [Piskel App](https://www.piskelapp.com/)
-- [Photopea](https://www.photopea.com/)
-- [OpenGameArt.org](https://opengameart.org/)
-- [Itch.io Free Game Assets](https://itch.io/game-assets/free)
-- [CraftPix.net Freebies](https://craftpix.net/freebies/)
-- [Google Fonts](https://fonts.google.com/) – For all fonts
-
-Some sprites, icons, and tilesets in Dungeon Escape! are from these sites, or inspired by assets found there.
-
-### Testing and Validation
-
-- [W3C Validators](https://validator.w3.org/) – For HTML and CSS
-- [ESLint](https://eslint.org/) – For JavaScript code
-- [WAVE](https://wave.webaim.org/) – For accessibility
-- [Google Lighthouse](https://developers.google.com/web/tools/lighthouse) – For performance
+- [Phaser Forum & Discord](https://phaser.discourse.group/)
 
 ### Playtesters
 
-Thank you to my friends, colleagues, and family who tested Dungeon Escape! on different devices and gave me feedback. Your help made the game much better!
-
----
-
-If you use this project or part of it, please leave these credits in your work.  
-And thanks to everyone online who shares their knowledge – it really helps!
+Thank you to my friends, colleagues, and family who tested Dungeon Escape! on different devices and gave me feedback.
 
 ## Behind the Scenes!
 
