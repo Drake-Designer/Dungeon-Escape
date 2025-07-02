@@ -57,14 +57,14 @@ You are the hero, stuck in a dark dungeon... Your mission?
 
 ### Difficulty Levels
 
-You can now choose between **three difficulty levels** before starting the game!  
+You can choose between **three difficulty levels** before starting the game!  
 Each level changes the **number of monsters** in the dungeon and **how fast they move**:
 
-- **Easy**: Fewer, slower monsters.
-- **Medium**: More, faster monsters.
-- **Hard**: The most monsters, at the highest speed!
+- **Easy**: 4 slower monsters
+- **Medium**: 6 faster monsters
+- **Hard**: 8 monsters, at the highest speed
 
-Pick your difficulty for a casual run, or challenge yourself for a true dungeon escape!
+Pick your difficulty and try to escape the dungeon!
 
 ---
 
@@ -592,6 +592,8 @@ Big thanks to:
 - [violaberg](https://github.com/violaberg) – _tested on iPhone/iPad and gave helpful feedback._
 
 - [Rebekah-codes](https://github.com/Rebekah-codes) – _tested on Samsung and sent screenshots._
+
+---
 
 ## Behind the Scenes!
 
