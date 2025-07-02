@@ -32,10 +32,9 @@
      - [Typography](#typography)
 3. [Technologies Used](#technologies-used)
 4. [Testing & Bug Fixes](#testing--bug-fixes)
-5. [Validation](#validation)
-6. [Behind the Scenes!](#behind-the-scenes)
-7. [Deployment](#deployment)
-8. [Credits](#credits)
+5. [Behind the Scenes!](#behind-the-scenes)
+6. [Deployment](#deployment)
+7. [Credits](#credits)
 
 ---
 
