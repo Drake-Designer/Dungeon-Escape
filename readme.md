@@ -569,6 +569,18 @@ I learned how to create my own map with these YouTube tutorials:
 
 These videos showed me how to use Tiled with Phaser, add objects, and set up collisions.
 
+#### Phaser Documentation & Community
+
+- [Phaser 3 Documentation](https://docs.phaser.io/phaser/getting-started/what-is-phaser)
+
+- [Phaser Examples](https://phaser.io/examples)
+
+- [Phaser Forum & Discord](https://phaser.discourse.group/)
+
+#### Playtesters
+
+Thank you to my friends, colleagues, and family who tested Dungeon Escape! on different devices and gave me feedback.
+
 ---
 
 ### Special Thanks
@@ -580,18 +592,6 @@ Big thanks to:
 - [violaberg](https://github.com/violaberg) – _tested on iPhone/iPad and gave helpful feedback._
 
 - [Rebekah-codes](https://github.com/Rebekah-codes) – _tested on Samsung and sent screenshots._
-
-### Phaser Documentation & Community
-
-- [Phaser 3 Documentation](https://docs.phaser.io/phaser/getting-started/what-is-phaser)
-
-- [Phaser Examples](https://phaser.io/examples)
-
-- [Phaser Forum & Discord](https://phaser.discourse.group/)
-
-### Playtesters
-
-Thank you to my friends, colleagues, and family who tested Dungeon Escape! on different devices and gave me feedback.
 
 ## Behind the Scenes!
 
