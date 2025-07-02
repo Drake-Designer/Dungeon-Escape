@@ -1,3 +1,5 @@
+/* jshint esversion: 11 */
+
 // -------------------------------------> Game difficutly selection
 
 let saveDifficutly = Number(localStorage.getItem('gameDifficulty'));

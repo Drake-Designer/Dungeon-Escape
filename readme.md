@@ -220,6 +220,8 @@ The game uses a mix of modern and retro fonts to create a fun, arcade-style feel
 
 ## Testing & Bug Fixes
 
+For full details on all testing carried out, including manual testing, automated tests, device and browser checks, and bug fixes, please see the [TESTING.md](/TESTING.md) file.
+
 ### 🐞 BUG 1: Game Container & Phaser Canvas Sizing
 
 When I started building **Dungeon Escape!**, I wanted my Phaser game window to fit perfectly inside a `<div>` game-area on my web page, always centered and responsive.
@@ -363,134 +365,6 @@ doorObjects.forEach((obj) => {
 ```
 
 ![Tileset Map Bug](assets/readme-images/bugs/phaser-map-fix.png)
-
----
-
-## Validation
-
-### HTML & CSS Validation
-
-All code was checked using the official W3C validators:
-
-- **HTML:**  
-  [W3C Markup Validation Service](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdrake-designer.github.io%2FDungeon-Escape%2Findex.html)  
-  _No errors or warnings were found, except for the following info message:_
-
-  > **Info:** Trailing slash on void elements has no effect and interacts badly with unquoted attribute values.
-
-  This is **not an error** and does not affect the validity or functionality of the HTML.  
-  It occurs because I use the Prettier extension, which automatically formats void elements with a trailing slash.
-
-- **CSS:**  
-  [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fdrake-designer.github.io%2FDungeon-Escape%2Findex.html&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=it)  
-  _No errors or warnings were found._
-
-The project fully complies with W3C standards for both HTML5 and CSS3.
-
----
-
-### JavaScript Validation
-
-All JavaScript code was checked using [ESLint](https://eslint.org/) to ensure code quality and catch potential errors.
-
-I initialized ESLint in the project using the terminal, with the following options:
-
-- **Lint:** JavaScript
-- **Use ESLint for:** Problems
-- **Type of modules:** Script
-- **Framework:** None
-- **TypeScript:** No
-- **Where does your code run?** Browser
-
-I let ESLint install the necessary dependencies and create the config file automatically.
-
-Here is a screenshot of the ESLint initialization process from my terminal:
-
-![ESLint Configuration](assets/readme-images/eslint-test.png)
-
----
-
-### Accessibility Validation
-
-I checked accessibility using the [WAVE Web Accessibility Evaluation Tool](https://wave.webaim.org).
-
-- **No accessibility errors were found.**
-- The report confirms 0 errors and 0 contrast issues.
-- A few minor alerts or features are shown (such as structural elements and ARIA usage), but nothing that affects the accessibility or usability of the site.
-
-If you want to view the WAVE report directly, you can use this link:
-
-👉 [View live WAVE report for Dungeon Escape!](https://wave.webaim.org/report#/https://drake-designer.github.io/Dungeon-Escape/)
-
----
-
-### Lighthouse Performance Results
-
-I regularly tested Dungeon Escape! with **Google Lighthouse** (in **Incognito Mode** on Google Chrome) to monitor performance, accessibility, and best practices during development.
-
-- On **desktop**, the game consistently scores very high on all metrics.
-- On **mobile**, the scores are generally good, but can fluctuate more often due to differences in device hardware, network conditions, and how browsers emulate mobile performance.
-
-I have done my best to optimize the site for both desktop and mobile by:
-
-- Minimizing and optimizing all images and assets.
-- Using only one main CSS file, loaded at the top.
-- Deferring all JavaScript files to prevent render blocking.
-- Using optimized images.
-- Adding explicit width and height attributes to key images to minimize layout shifts.
-- Loading only essential fonts from Google Fonts with `display=swap` for better perceived loading times.
-
-Despite these optimizations, mobile scores can still vary depending on the testing environment, device, and emulation.
-
-#### Example Results
-
-**Desktop (Lighthouse):**
-
-![Lighthouse Desktop Report](assets/readme-images/lighthouse-desktop.png)
-
-**Mobile (Lighthouse):**
-
-![Lighthouse Mobile Report](assets/readme-images/lighthouse-mobile.png)
-
-> If you are testing the game yourself, you may see slightly different scores depending on your device or network, but overall, the game remains performant and responsive!
-
----
-
-### Device Testing
-
-To ensure a great user experience across different platforms, **I tested Dungeon Escape! personally and asked friends and colleagues to test it on multiple devices**.
-
-The game runs well on all of the following devices, with no major issues reported:
-
-- **iMac**
-- **Desktop PC**
-- **iPhone devices**
-- **iPad devices**
-- **Samsung phone device**
-
-Below are screenshots showing Dungeon Escape! running on each device:
-
-#### iMac
-
-![Dungeon Escape on iMac](assets/readme-images/iMac-test.png)
-
-#### Desktop PC
-
-![Dungeon Escape on Desktop PC](assets/readme-images/desktop-test.png)
-
-#### iPhone
-
-![Dungeon Escape on iPhone](assets/readme-images/iPhone-test.png)
-
-#### iPad
-
-![Dungeon Escape on iPad](assets/readme-images/iPad-test.png)
-
-#### Samsung Phone
-
-![Dungeon Escape on Samsung Phone](assets/readme-images/samsung-test.png)
-
-All devices displayed the game correctly and the main features (navigation, controls, and modals) worked as intended.
 
 ---
 

@@ -1,5 +1,7 @@
 /* global Phaser */
 
+/* jshint esversion: 11 */
+
 // -------------------------------------> Global Variables
 
 // Hero and Monster
