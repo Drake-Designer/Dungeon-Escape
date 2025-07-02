@@ -260,7 +260,7 @@ class startScene extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('main-bg', 'assets/phaser/background-image/main-background.webp');
+    this.load.image('main-bg', 'assets/images/background-image/main-background.webp');
   }
 
   create() {
@@ -306,20 +306,20 @@ class mainScene extends Phaser.Scene {
 
   preload() {
     // Tiled Map
-    this.load.tilemapTiledJSON('dungeon-map', 'assets/phaser/tilesets/dungeon-map.tmj'); // Personalized map made by ME with Tiled! :D
+    this.load.tilemapTiledJSON('dungeon-map', 'assets/images/tilesets/dungeon-map.tmj');
 
     // Sprites map
-    this.load.spritesheet('floor', 'assets/phaser/tilesets/floor.png', { frameWidth: 16, frameHeight: 16 });
-    this.load.spritesheet('walls', 'assets/phaser/tilesets/walls.png', { frameWidth: 16, frameHeight: 16 });
-    this.load.spritesheet('walls-doors', 'assets/phaser/tilesets/walls-doors.png', { frameWidth: 16, frameHeight: 16 });
-    this.load.spritesheet('mixed', 'assets/phaser/tilesets/mixed.png', { frameWidth: 16, frameHeight: 16 });
-    this.load.spritesheet('chest', 'assets/phaser/tilesets/chest.png', { frameWidth: 16, frameHeight: 15 });
-    this.load.spritesheet('door-close', 'assets/phaser/tilesets/door-close.png', { frameWidth: 32, frameHeight: 32 });
-    this.load.spritesheet('door-open', 'assets/phaser/tilesets/door-open.png', { frameWidth: 32, frameHeight: 32 });
+    this.load.spritesheet('floor', 'assets/images/tilesets/floor.png', { frameWidth: 16, frameHeight: 16 });
+    this.load.spritesheet('walls', 'assets/images/tilesets/walls.png', { frameWidth: 16, frameHeight: 16 });
+    this.load.spritesheet('walls-doors', 'assets/images/tilesets/walls-doors.png', { frameWidth: 16, frameHeight: 16 });
+    this.load.spritesheet('mixed', 'assets/images/tilesets/mixed.png', { frameWidth: 16, frameHeight: 16 });
+    this.load.spritesheet('chest', 'assets/images/tilesets/chest.png', { frameWidth: 16, frameHeight: 15 });
+    this.load.spritesheet('door-close', 'assets/images/tilesets/door-close.png', { frameWidth: 32, frameHeight: 32 });
+    this.load.spritesheet('door-open', 'assets/images/tilesets/door-open.png', { frameWidth: 32, frameHeight: 32 });
 
     // Sprites Hero and Monster
-    this.load.spritesheet('hero', 'assets/phaser/sprites/hero.png', { frameWidth: 32, frameHeight: 32 });
-    this.load.spritesheet('monster', 'assets/phaser/sprites/monster.png', { frameWidth: 32, frameHeight: 32 });
+    this.load.spritesheet('hero', 'assets/images/sprites/hero.png', { frameWidth: 32, frameHeight: 32 });
+    this.load.spritesheet('monster', 'assets/images/sprites/monster.png', { frameWidth: 32, frameHeight: 32 });
   }
 
   create() {
@@ -486,7 +486,7 @@ class winScene extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('win-bg', 'assets/phaser/background-image/win-background.webp');
+    this.load.image('win-bg', 'assets/images/background-image/win-background.webp');
   }
 
   create() {
@@ -536,7 +536,7 @@ class gameOverScene extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('gameover-bg', 'assets/phaser/background-image/gameover-background.webp');
+    this.load.image('gameover-bg', 'assets/images/background-image/gameover-background.webp');
   }
 
   create() {

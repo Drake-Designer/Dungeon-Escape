@@ -1,4 +1,4 @@
-![Code Institute Project](assets/readme-images/code-institute-img.png)
+![Code Institute Project](assets/documentation/code-institute-img.png)
 
 <h1 align="center">
   <img src="assets/images/favicon/favicon-96x96.png" width="28" alt="Monster GIF" />
@@ -16,7 +16,7 @@
 
 ## 👉 [Play Dungeon Escape](https://drake-designer.github.io/Dungeon-Escape/)
 
-![Game Intro Screenshot](assets/readme-images/am-i-responsive.png)
+![Game Intro Screenshot](assets/documentation/am-i-responsive.png)
 
 ---
 
@@ -33,9 +33,9 @@
 3. [Technologies Used](#technologies-used)
 4. [Testing & Bug Fixes](#testing--bug-fixes)
 5. [Validation](#validation)
-6. [Deployment](#deployment)
-7. [Credits](#credits)
-8. [Behind the Scenes!](#behind-the-scenes)
+6. [Behind the Scenes!](#behind-the-scenes)
+7. [Deployment](#deployment)
+8. [Credits](#credits)
 
 ---
 
@@ -104,7 +104,7 @@ My github links projects:
 
 And… even if I’ve already forgotten more than half of what I learned 😅, I still managed to get the mini-Phaser diploma! (But I definitely need to go back to the course, because there’s still a lot I need to learn properly and I didn’t have time to focus as much as I wanted!)
 
-![Zenva Certificate](assets/readme-images/zenva-certificate.png)
+![Zenva Certificate](assets/documentation/zenva-certificate.png)
 
 This whole experience really pushed me out of my comfort zone, but it made me even more excited to keep learning and building new things!
 
@@ -154,7 +154,7 @@ Each version shows:
 
 These wireframes helped me make sure the game looks clean and easy to use on all devices.
 
-![Wireframes](assets/readme-images/wireframes.png)
+![Wireframes](assets/documentation/wireframes.png)
 
 #### Colour Palette
 
@@ -171,7 +171,7 @@ The game uses a simple palette to make everything feel like an old-school dungeo
 
 This dark palette makes the gold and teal really pop, just like in retro games.
 
-![Color Palette](assets/readme-images/color-palette.png)
+![Color Palette](assets/documentation/color-palette.png)
 
 #### Typography
 
@@ -220,7 +220,7 @@ The game uses a mix of modern and retro fonts to create a fun, arcade-style feel
 
 ## Testing & Bug Fixes
 
-For full details on all testing carried out, including manual testing, automated tests, device and browser checks, and bug fixes, please see the [TESTING.md](/TESTING.md) file.
+For full details on all testing carried out, including manual testing, automated tests and device/browser checks, please see the [TESTING.md](/TESTING.md) file.
 
 ### 🐞 BUG 1: Game Container & Phaser Canvas Sizing
 
@@ -256,11 +256,11 @@ But the canvas still didn’t fit right in all browsers and on all screens.
 
 After lots of searching, I asked for help on Discord (see screenshots below!).
 
-![Canvas Bug](assets/readme-images/bugs/canvas-bug-discord.png)
+![Canvas Bug](assets/documentation/bugs-images/canvas-bug-discord.png)
 
 A kind user suggested this simple strategy:
 
-![Canvas Bug 2](assets/readme-images/bugs/canvas-bug-discord-2.png)
+![Canvas Bug 2](assets/documentation/bugs-images/canvas-bug-discord-2.png)
 
 In the end, I decided to wrap the canvas in an extra `<div id="game-border">` to have better control over the border and centering with another CSS workaround:
 
@@ -322,17 +322,15 @@ No matter what I tried, changing the code, modifying the origin and offsets prop
 
 After a lot of trial and error, I decided to ask for help on the Tiled forum and also on Discord (see screenshots below).
 
-![Tileset Bug Pic](assets/readme-images/bugs/alignment-bug-discord.png)
+![Tileset Bug Pic Discord](assets/documentation/bugs-images/alignment-bug-discord.png)
 
 A very helpful user on the forum explained that the problem could be fixed by changing the **Object Alignment** property of my tileset in Tiled. I had never noticed that option before!
 
-![Tileset Bug Pic](assets/readme-images/bugs/alignment-bug-tiled.png)
+![Tiled Forum Pic](assets/documentation/bugs-images/alignment-bug-tiled.png)
 
 ---
 
 As soon as I set **Object Alignment** to **Center** in my tileset properties and re-placed my doors and chests, everything lined up perfectly in Phaser, no more weird offsets or manual fixes!
-
----
 
 #### Before the fix:
 
@@ -349,7 +347,7 @@ doorObjects.forEach((obj) => {
 });
 ```
 
-![Tileset Map Bug](assets/readme-images/bugs/phaser-map-bug.png)
+![Tileset Map Bug](assets/documentation/bugs-images/phaser-map-bug.png)
 
 #### After the fix:
 
@@ -364,7 +362,89 @@ doorObjects.forEach((obj) => {
 });
 ```
 
-![Tileset Map Bug](assets/readme-images/bugs/phaser-map-fix.png)
+![Tileset Map Fix](assets/documentation/bugs-images/phaser-map-fix.png)
+
+## Behind the Scenes!
+
+### How the Monster Movement Evolved
+
+When I started working on Dungeon Escape, my original plan was simple: Monsters would only move up/down or left/right, just like old-school arcade games.
+
+But while testing, I made a funny mistake in the code: I changed monster.dx = 50; and monster.dy = 50; and suddenly, the monsters began to move diagonally.
+
+Instead of fixing this "bug," I thought: _"Wait, this actually looks cool! Why not let the monsters move in any direction, even diagonally? It makes the game feel more alive and unpredictable!"_
+
+So, with a bit of help from ChatGPT to refine the mechanics, I updated the logic:
+
+Now, whenever a monster hits a wall, it immediately picks a completely random direction—up, down, left, right, or any diagonal—and keeps wandering through the dungeon like a real little creature with a mind of its own.
+
+Example (old logic):
+
+```js
+function monsterMove() {
+  monsters.getChildren().forEach((monster, i) => {
+    if (monster.dx === undefined && monster.dy === undefined) {
+      if (positions[i].dir === 'v') {
+        monster.dx = 0;
+        monster.dy = 80;
+      } else {
+        monster.dx = 80;
+        monster.dy = 0;
+      }
+    }
+    if (monster.body.blocked.left || monster.body.blocked.right) {
+      monster.dx *= -1;
+    }
+    if (monster.body.blocked.up || monster.body.blocked.down) {
+      monster.dy *= -1;
+    }
+    monster.setVelocity(monster.dx, monster.dy);
+  });
+}
+```
+
+Example (new logic):
+
+```js
+function monsterMove() {
+  monsters.getChildren().forEach((monster) => {
+    if (monster.dx === undefined || monster.dy === undefined) {
+      monsterRandomDirection(monster);
+    }
+    if (monster.body.blocked.left || monster.body.blocked.right || monster.body.blocked.up || monster.body.blocked.down) {
+      monsterRandomDirection(monster);
+    }
+    monster.setVelocity(monster.dx, monster.dy);
+  });
+}
+
+function monsterRandomDirection(monster) {
+  const speed = 80;
+  const directions = [
+    { dx: speed, dy: 0 },
+    { dx: -speed, dy: 0 },
+    { dx: 0, dy: speed },
+    { dx: 0, dy: -speed },
+    { dx: speed, dy: speed },
+    { dx: -speed, dy: speed },
+    { dx: speed, dy: -speed },
+    { dx: -speed, dy: -speed },
+  ];
+  const dir = directions[Math.floor(Math.random() * directions.length)];
+  monster.dx = dir.dx;
+  monster.dy = dir.dy;
+}
+```
+
+That was a nice surprise for me, and it made me realize that mistakes can be fantastic sometimes! 😄
+
+### Note on Mobile Controls
+
+I am aware that the hero’s movement is **not as smooth on mobile devices** compared to desktop controls. I considered implementing a virtual joystick for touch controls, which is a common solution for making character movement more fluid on mobile.
+
+However, after some research and testing, I found that adding a joystick was a bit too complex for this project’s scope, and it would also take up too much space in the game window, especially on smaller screens. I decided to keep the **tap-to-move** controls for mobile, even though they are not perfectly smooth, because they keep the interface clean and the gameplay experience simple.
+
+If I work on a future version, I’ll definitely explore better mobile control solutions!
 
 ---
 
@@ -467,88 +547,13 @@ Big thanks to:
 
 - [Rebekah-codes](https://github.com/Rebekah-codes) – _tested on Samsung and sent screenshots._
 
----
+### 🙏 Mentor & Acknowledgements
 
-## Behind the Scenes!
+A very special thank you to [**Lewis**](https://github.com/LewisMDillon), who has been my mentor for this project.
 
-### How the Monster Movement Evolved
+Lewis gave me invaluable advice — especially on how to structure and improve the final README.  
+He’s incredibly skilled and always supportive: his suggestions were essential in making my presentation and documentation much clearer and more professional.
 
-When I started working on Dungeon Escape, my original plan was simple: Monsters would only move up/down or left/right, just like old-school arcade games.
-
-But while testing, I made a funny mistake in the code: I changed monster.dx = 50; and monster.dy = 50; and suddenly, the monsters began to move diagonally.
-
-Instead of fixing this "bug," I thought: _"Wait, this actually looks cool! Why not let the monsters move in any direction, even diagonally? It makes the game feel more alive and unpredictable!"_
-
-So, with a bit of help from ChatGPT to refine the mechanics, I updated the logic:
-
-Now, whenever a monster hits a wall, it immediately picks a completely random direction—up, down, left, right, or any diagonal—and keeps wandering through the dungeon like a real little creature with a mind of its own.
-
-Example (old logic):
-
-```js
-function monsterMove() {
-  monsters.getChildren().forEach((monster, i) => {
-    if (monster.dx === undefined && monster.dy === undefined) {
-      if (positions[i].dir === 'v') {
-        monster.dx = 0;
-        monster.dy = 80;
-      } else {
-        monster.dx = 80;
-        monster.dy = 0;
-      }
-    }
-    if (monster.body.blocked.left || monster.body.blocked.right) {
-      monster.dx *= -1;
-    }
-    if (monster.body.blocked.up || monster.body.blocked.down) {
-      monster.dy *= -1;
-    }
-    monster.setVelocity(monster.dx, monster.dy);
-  });
-}
-```
-
-Example (new logic):
-
-```js
-function monsterMove() {
-  monsters.getChildren().forEach((monster) => {
-    if (monster.dx === undefined || monster.dy === undefined) {
-      monsterRandomDirection(monster);
-    }
-    if (monster.body.blocked.left || monster.body.blocked.right || monster.body.blocked.up || monster.body.blocked.down) {
-      monsterRandomDirection(monster);
-    }
-    monster.setVelocity(monster.dx, monster.dy);
-  });
-}
-
-function monsterRandomDirection(monster) {
-  const speed = 80;
-  const directions = [
-    { dx: speed, dy: 0 },
-    { dx: -speed, dy: 0 },
-    { dx: 0, dy: speed },
-    { dx: 0, dy: -speed },
-    { dx: speed, dy: speed },
-    { dx: -speed, dy: speed },
-    { dx: speed, dy: -speed },
-    { dx: -speed, dy: -speed },
-  ];
-  const dir = directions[Math.floor(Math.random() * directions.length)];
-  monster.dx = dir.dx;
-  monster.dy = dir.dy;
-}
-```
-
-That was a nice surprise for me, and it made me realize that mistakes can be fantastic sometimes! 😄
-
-### Note on Mobile Controls
-
-I am aware that the hero’s movement is **not as smooth on mobile devices** compared to desktop controls. I considered implementing a virtual joystick for touch controls, which is a common solution for making character movement more fluid on mobile.
-
-However, after some research and testing, I found that adding a joystick was a bit too complex for this project’s scope, and it would also take up too much space in the game window, especially on smaller screens. I decided to keep the **tap-to-move** controls for mobile, even though they are not perfectly smooth, because they keep the interface clean and the gameplay experience simple.
-
-If I work on a future version, I’ll definitely explore better mobile control solutions!
+I honestly hope to have him as my mentor again in the future! 😄
 
 ---
