@@ -1,10 +1,10 @@
 /* jshint esversion: 11 */
 
-// -------------------------------------> Game difficutly selection
+// -------------------------------------> Game difficulty selection
 
-let saveDifficutly = Number(localStorage.getItem('gameDifficulty'));
-if (![1, 2, 3].includes(saveDifficutly)) saveDifficutly = 1;
-window.gameDifficulty = saveDifficutly;
+let saveDifficulty = Number(localStorage.getItem('gameDifficulty'));
+if (![1, 2, 3].includes(saveDifficulty)) saveDifficulty = 1;
+window.gameDifficulty = saveDifficulty;
 
 function updateSelectedBtn() {
   for (let i = 1; i <= 3; i++) {
